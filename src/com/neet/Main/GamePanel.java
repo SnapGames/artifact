@@ -12,8 +12,15 @@ import java.io.File;
 import javax.swing.JPanel;
 
 import com.neet.GameState.GameStateManager;
-import com.neet.Handlers.Keys;
+import com.neet.Handlers.InputHandler;
 
+/**
+ * Artifact Panel implementation.
+ *
+ * @author ForeignGuyMike(https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ)
+ * @author Frédéric Delorme<frederic.delorme@web-context.com>(refactoring)
+ *
+ */
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel implements Runnable, KeyListener {
 
@@ -58,13 +65,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
 	private void init() {
 
-		image = new BufferedImage(
-				WIDTH, 
-				HEIGHT, 
-				BufferedImage.TYPE_INT_RGB);
+		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 		g = (Graphics2D) image.getGraphics();
-		g.setRenderingHint(
-				RenderingHints.KEY_TEXT_ANTIALIASING,
+		g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
 				RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
 		running = true;
@@ -107,7 +110,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
 	private void update() {
 		gsm.update();
-		Keys.update();
+		InputHandler.update();
 	}
 
 	private void draw() {
@@ -131,7 +134,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 			return;
 		try {
 			String path = System.getProperty("user.dir");
-			java.io.File out = new java.io.File(path+File.separator+"frame"
+			java.io.File out = new java.io.File(path + File.separator + "frame"
 					+ recordingCount + ".gif");
 			javax.imageio.ImageIO.write(image, "JPG", out);
 			recordingCount++;
@@ -153,11 +156,11 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 				return;
 			}
 		}
-		Keys.keySet(key.getKeyCode(), true);
+		InputHandler.keySet(key.getKeyCode(), true);
 	}
 
 	public void keyReleased(KeyEvent key) {
-		Keys.keySet(key.getKeyCode(), false);
+		InputHandler.keySet(key.getKeyCode(), false);
 	}
 
 }
