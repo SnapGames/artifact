@@ -202,8 +202,8 @@ public class Level1BState extends LevelGameState {
 	 * 
 	 * @see com.neet.GameState.LevelGameState#update()
 	 */
-	public void update() {
-		super.update();
+	public void update(long delay) {
+		super.update(delay);
 		// check if quake event should start
 		if (player.getx() > 2175 && !tileMap.isShaking()) {
 			eventQuake = blockInput = true;

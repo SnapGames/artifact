@@ -143,8 +143,8 @@ public class Level1CState extends LevelGameState {
 	 * 
 	 * @see com.neet.GameState.LevelGameState#update()
 	 */
-	public void update() {
-		super.update();
+	public void update(long delay) {
+		super.update(delay);
 		// check if boss dead event should start
 		if (!eventFinish && spirit.isDead()) {
 			eventBossDead = blockInput = true;
@@ -195,11 +195,11 @@ public class Level1CState extends LevelGameState {
 
 	}
 
-	// /////////////////////////////////////////////////////
-	// ////////////////// EVENTS
-	// /////////////////////////////////////////////////////
 
-	// reset level
+	/*
+	 * (non-Javadoc)
+	 * @see com.neet.GameState.LevelGameState#reset()
+	 */
 	public void reset() {
 		super.reset();
 		player.setPosition(50, 190);
@@ -228,7 +228,7 @@ public class Level1CState extends LevelGameState {
 			PlayerSave.setHealth(player.getHealth());
 			PlayerSave.setLives(player.getLives());
 			PlayerSave.setTime(player.getTime());
-			gsm.setState(GameStateManager.ACIDSTATE);
+			gsm.setActiveState(GameStateManager.ACIDSTATE);
 		}
 
 	}

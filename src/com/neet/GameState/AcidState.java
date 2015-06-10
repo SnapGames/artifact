@@ -5,13 +5,18 @@ import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
-import javafx.scene.input.KeyCode;
-
 import javax.imageio.ImageIO;
 
 import com.neet.Handlers.InputHandler;
 import com.neet.Main.GamePanel;
 
+/**
+ * 
+ * 
+ * @author ForeignGuyMike(https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ)
+ * @author Frédéric Delorme<frederic.delorme@web-context.com>(refactoring)
+ *
+ */
 public class AcidState extends GameState {
 
 	private float hue;
@@ -34,7 +39,7 @@ public class AcidState extends GameState {
 	public void init() {
 	}
 
-	public void update() {
+	public void update(long delay) {
 		handleInput();
 		color = Color.getHSBColor(hue, 1f, 1f);
 		hue += 0.01;
@@ -54,7 +59,7 @@ public class AcidState extends GameState {
 
 	public void handleInput() {
 		if (InputHandler.isPressed(InputHandler.KeyCode.ESCAPE))
-			gsm.setState(GameStateManager.MENUSTATE);
+			gsm.setActiveState(GameStateManager.MENUSTATE);
 	}
 
 }

@@ -99,7 +99,7 @@ public class InputHandler {
 	/**
 	 * update key states
 	 */
-	public static void update() {
+	public static void update(long delta) {
 		for (int i = 0; i < NUM_KEYS; i++) {
 			prevKeyState[i] = keyState[i];
 		}

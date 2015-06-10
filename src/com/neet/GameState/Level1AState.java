@@ -170,8 +170,8 @@ public class Level1AState extends LevelGameState {
 	 * 
 	 * @see com.neet.GameState.LevelGameState#update()
 	 */
-	public void update() {
-		super.update();
+	public void update(long delay) {
+		super.update(delay);
 
 		// move backgrounds
 		clouds.setPosition(tileMap.getx(), tileMap.gety());

@@ -41,7 +41,7 @@ public class PauseState extends GameState {
 	 * 
 	 * @see com.neet.GameState.GameState#update()
 	 */
-	public void update() {
+	public void update(long delay) {
 		handleInput();
 	}
 
@@ -68,7 +68,7 @@ public class PauseState extends GameState {
 			gsm.setPaused(false);
 		if (InputHandler.isPressed(InputHandler.KeyCode.BUTTON1)) {
 			gsm.setPaused(false);
-			gsm.setState(GameStateManager.MENUSTATE);
+			gsm.setActiveState(GameStateManager.MENUSTATE);
 		}
 	}
 

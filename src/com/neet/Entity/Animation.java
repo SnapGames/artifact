@@ -2,6 +2,13 @@ package com.neet.Entity;
 
 import java.awt.image.BufferedImage;
 
+/**
+ * Animation class to manage frames to display .
+ * 
+ * @authorForeignGuyMike(https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ)
+ * @author Frédéric Delorme<frederic.delorme@web-context.com>(refactoring)
+ *
+ */
 public class Animation {
 	
 	private BufferedImage[] frames;
@@ -30,6 +37,9 @@ public class Animation {
 	public void setFrame(int i) { currentFrame = i; }
 	public void setNumFrames(int i) { numFrames = i; }
 	
+	/**
+	 * update animation phase
+	 */
 	public void update() {
 		
 		if(delay == -1) return;

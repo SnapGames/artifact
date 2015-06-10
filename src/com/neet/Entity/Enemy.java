@@ -2,8 +2,14 @@ package com.neet.Entity;
 
 import com.neet.Audio.JukeBox;
 import com.neet.TileMap.TileMap;
-
-public class Enemy extends MapObject {
+/**
+ * Default generic enemy object.
+ * 
+ * @authorForeignGuyMike(https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ)
+ * @author Frédéric Delorme<frederic.delorme@web-context.com>(refactoring)
+ *
+ */
+public abstract class Enemy extends MapObject implements GameObject{
 	
 	protected int health;
 	protected int maxHealth;
@@ -35,7 +41,12 @@ public class Enemy extends MapObject {
 		flinchCount = 0;
 	}
 	
-	public void update() {}
+	public abstract void update(long delay);
+
+	public void reset() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
 

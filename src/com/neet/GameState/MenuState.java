@@ -77,7 +77,7 @@ public class MenuState extends GameState {
 	 * 
 	 * @see com.neet.GameState.GameState#update()
 	 */
-	public void update() {
+	public void update(long delay) {
 
 		// check keys
 		handleInput();
@@ -125,7 +125,7 @@ public class MenuState extends GameState {
 		if (currentChoice == 0) {
 			JukeBox.play("menuselect");
 			PlayerSave.init();
-			gsm.setState(GameStateManager.LEVEL1ASTATE);
+			gsm.setActiveState(GameStateManager.LEVEL1ASTATE);
 		} else if (currentChoice == 1) {
 			System.exit(0);
 		}

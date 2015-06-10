@@ -3,6 +3,14 @@ package com.neet.GameState;
 import com.neet.Audio.JukeBox;
 import com.neet.Main.GamePanel;
 
+/**
+ * Game state manager is the Earth Beat of the game. Switching and orchestrating
+ * all states.
+ * 
+ * @author ForeignGuyMike(https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ)
+ * @author Frédéric Delorme<frederic.delorme@web-context.com>(refactoring)
+ *
+ */
 public class GameStateManager {
 
 	/**
@@ -79,7 +87,11 @@ public class GameStateManager {
 		gameStates[state] = null;
 	}
 
-	public void setState(int state) {
+	/**
+	 * set active State.
+	 * @param state
+	 */
+	public void setActiveState(int state) {
 		unloadState(currentState);
 		currentState = state;
 		loadState(currentState);
@@ -89,13 +101,13 @@ public class GameStateManager {
 		paused = b;
 	}
 
-	public void update() {
+	public void update(long delay) {
 		if (paused) {
-			pauseState.update();
+			pauseState.update(delay);
 			return;
 		}
 		if (gameStates[currentState] != null)
-			gameStates[currentState].update();
+			gameStates[currentState].update(delay);
 	}
 
 	public void draw(java.awt.Graphics2D g) {

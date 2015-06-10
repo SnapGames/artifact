@@ -17,7 +17,9 @@ import com.neet.Handlers.InputHandler;
 /**
  * Artifact Panel implementation.
  *
- * @author ForeignGuyMike(https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ)
+ * @author 
+ *         ForeignGuyMike(https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ
+ *         )
  * @author Frédéric Delorme<frederic.delorme@web-context.com>(refactoring)
  *
  */
@@ -35,6 +37,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 	private int FPS = 60;
 	private long targetTime = 1000 / FPS;
 
+	private long startTime = 0, endTime = 0, deltaTime = 0;
+
 	// image
 	private BufferedImage image;
 	private Graphics2D g;
@@ -47,6 +51,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 	private int recordingCount = 0;
 	private boolean screenshot;
 
+	/**
+	 * Default constructor for this Game. Initialize object size.
+	 */
 	public GamePanel() {
 		super();
 		setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
@@ -54,6 +61,12 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		requestFocus();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see javax.swing.JComponent#addNotify()
+	 */
+	@Override
 	public void addNotify() {
 		super.addNotify();
 		if (thread == null) {
@@ -63,6 +76,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		}
 	}
 
+	/**
+	 * Initialize the game.
+	 */
 	private void init() {
 
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
@@ -76,25 +92,31 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Runnable#run()
+	 */
 	public void run() {
 		init();
 
-		long start;
-		long elapsed;
-		long wait;
+		long start = 0;
+		long elapsed = 0;
+		long wait = 0;
 
 		// game loop
 		while (running) {
 
 			start = System.nanoTime();
 
-			update();
-			draw();
+			update(elapsed);
+			draw(g);
 			drawToScreen();
 
 			elapsed = System.nanoTime() - start;
 
 			wait = targetTime - elapsed / 1000000;
+
 			if (wait < 0)
 				wait = 5;
 
@@ -108,12 +130,17 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
 	}
 
-	private void update() {
-		gsm.update();
-		InputHandler.update();
+	/**
+	 * Update Game state.
+	 * 
+	 * @param deltaTime
+	 */
+	private void update(long deltaTime) {
+		gsm.update(deltaTime);
+		InputHandler.update(deltaTime);
 	}
 
-	private void draw() {
+	private void draw(Graphics2D g) {
 		gsm.draw(g);
 	}
 
@@ -142,9 +169,19 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.awt.event.KeyListener#keyTyped(java.awt.event.KeyEvent)
+	 */
 	public void keyTyped(KeyEvent key) {
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent)
+	 */
 	public void keyPressed(KeyEvent key) {
 		if (key.isControlDown()) {
 			if (key.getKeyCode() == KeyEvent.VK_R) {
@@ -159,6 +196,11 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		InputHandler.keySet(key.getKeyCode(), true);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.awt.event.KeyListener#keyReleased(java.awt.event.KeyEvent)
+	 */
 	public void keyReleased(KeyEvent key) {
 		InputHandler.keySet(key.getKeyCode(), false);
 	}

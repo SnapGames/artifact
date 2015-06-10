@@ -20,7 +20,7 @@ public abstract class EnemyProjectile extends MapObject {
 	
 	public abstract void setHit();
 	
-	public abstract void update();
+	public abstract void update(long delta);
 	
 	public void draw(Graphics2D g) {
 		super.draw(g);
