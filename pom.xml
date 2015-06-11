@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.neet.game.platform</groupId>
+	<groupId>com.neet.artifact.game.platform</groupId>
 	<artifactId>artifact</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Artifact</name>
@@ -64,7 +64,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>lib/</classpathPrefix>
-							<mainClass>com.neet.game.Game</mainClass>
+							<mainClass>com.neet.artifact.framework.Game</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
