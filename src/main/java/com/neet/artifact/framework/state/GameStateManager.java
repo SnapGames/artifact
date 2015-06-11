@@ -13,7 +13,9 @@ import com.neet.artifact.game.gamestate.PauseState;
  * Game state manager is the Earth Beat of the game. Switching and orchestrating
  * all states.
  * 
- * @author ForeignGuyMike(https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ)
+ * @author 
+ *         ForeignGuyMike(https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ
+ *         )
  * @author Frédéric Delorme<frederic.delorme@web-context.com>(refactoring)
  *
  */
@@ -45,6 +47,7 @@ public class GameStateManager {
 	public static final int LEVEL1ASTATE = 2;
 	public static final int LEVEL1BSTATE = 3;
 	public static final int LEVEL1CSTATE = 4;
+	public static final int OPTIONSTATE = 5;
 	public static final int ACIDSTATE = 15;
 	public static final int NUMGAMESTATES = 16;
 
@@ -72,16 +75,25 @@ public class GameStateManager {
 	 * @param state
 	 */
 	private void loadState(int state) {
-		if (state == MENUSTATE)
+		switch (state) {
+		case MENUSTATE:
 			gameStates[state] = new MenuState(this);
-		else if (state == LEVEL1ASTATE)
+			break;
+		case LEVEL1ASTATE:
 			gameStates[state] = new Level1AState(this);
-		else if (state == LEVEL1BSTATE)
+			break;
+		case LEVEL1BSTATE:
 			gameStates[state] = new Level1BState(this);
-		else if (state == LEVEL1CSTATE)
+			break;
+		case LEVEL1CSTATE:
 			gameStates[state] = new Level1CState(this);
-		else if (state == ACIDSTATE)
+		case ACIDSTATE:
 			gameStates[state] = new AcidState(this);
+			break;
+		case OPTIONSTATE:
+			gameStates[state] = new OptionState(this);
+			break;
+		}
 	}
 
 	/**
@@ -95,6 +107,7 @@ public class GameStateManager {
 
 	/**
 	 * set active State.
+	 * 
 	 * @param state
 	 */
 	public void setActiveState(int state) {

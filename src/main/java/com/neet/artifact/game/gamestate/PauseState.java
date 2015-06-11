@@ -3,7 +3,9 @@ package com.neet.artifact.game.gamestate;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.geom.Rectangle2D;
 
+import com.neet.artifact.framework.Game;
 import com.neet.artifact.framework.GamePanel;
 import com.neet.artifact.framework.handler.InputHandler;
 import com.neet.artifact.framework.state.GameState;
@@ -53,11 +55,16 @@ public class PauseState extends GameState {
 	 * @see com.neet.artifact.gamestate.GameState#draw(java.awt.Graphics2D)
 	 */
 	public void draw(Graphics2D g) {
+		// retrieve translated sentence.
+		String pause = Game.getMessage("pause.main");
+		// prepare font
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
 		g.setColor(Color.WHITE);
 		g.setFont(font);
-		g.drawString("Game Paused", 90, 90);
+		//center pause sentence.
+		Rectangle2D rect = g.getFontMetrics(font).getStringBounds(pause, g);
+		g.drawString(pause, (int)(GamePanel.WIDTH-rect.getWidth())/2, (int)(GamePanel.HEIGHT-rect.getHeight())/2);
 	}
 
 	/*

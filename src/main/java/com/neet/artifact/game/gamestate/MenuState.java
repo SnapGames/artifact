@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 
+import com.neet.artifact.framework.Game;
 import com.neet.artifact.framework.GamePanel;
 import com.neet.artifact.framework.audio.JukeBox;
 import com.neet.artifact.framework.handler.InputHandler;
@@ -24,9 +25,14 @@ import com.neet.artifact.game.entity.PlayerSave;
 public class MenuState extends GameState {
 
 	private BufferedImage head;
-
+	
 	private int currentChoice = 0;
-	private String[] options = { "Start", "Quit" };
+
+	private String[] options = { 
+			Game.getMessage("menu.item.start"),
+			Game.getMessage("menu.item.options"),
+			Game.getMessage("menu.item.quit")
+			};
 
 	private Color titleColor;
 	private Font titleFont;
@@ -64,6 +70,12 @@ public class MenuState extends GameState {
 		}
 
 	}
+	public void setLanguage(){
+		options[0]=Game.getMessage("menu.item.start");
+		options[1]=Game.getMessage("menu.item.options");
+		options[2]=Game.getMessage("menu.item.quit");
+	}
+	
 
 	/*
 	 * (non-Javadoc)
@@ -71,7 +83,7 @@ public class MenuState extends GameState {
 	 * @see com.neet.artifact.gamestate.GameState#init()
 	 */
 	public void init() {
-		// Nothing to init !
+		setLanguage();
 	}
 
 	/*
@@ -107,12 +119,10 @@ public class MenuState extends GameState {
 		g.setColor(Color.WHITE);
 		g.drawString(options[0], 145, 165);
 		g.drawString(options[1], 145, 185);
+		g.drawString(options[2], 145, 205);
 
 		// draw floating head
-		if (currentChoice == 0)
-			g.drawImage(head, 125, 154, null);
-		else if (currentChoice == 1)
-			g.drawImage(head, 125, 174, null);
+		g.drawImage(head, 125, 154+(20*currentChoice), null);
 
 		// other
 		g.setFont(font2);
@@ -124,12 +134,18 @@ public class MenuState extends GameState {
 	 * Menu item select.
 	 */
 	private void select() {
-		if (currentChoice == 0) {
+		switch(currentChoice){
+		case 0:
 			JukeBox.play("menuselect");
 			PlayerSave.init();
 			gsm.setActiveState(GameStateManager.LEVEL1ASTATE);
-		} else if (currentChoice == 1) {
+			break;
+		case 1:
+			gsm.setActiveState(GameStateManager.OPTIONSTATE);
+			break;
+		case 2:
 			System.exit(0);
+			break;
 		}
 	}
 

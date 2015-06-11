@@ -1,7 +1,7 @@
 package com.neet.artifact.framework;
 
-import java.io.IOException;
-import java.util.Properties;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.swing.JFrame;
 
@@ -9,28 +9,24 @@ import javax.swing.JFrame;
  * Game The game !
  * 
  * @author 
- *         ForeignGuyMike(https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ
- *         )
+ *         ForeignGuyMike<https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ
+ *         >
  * @author Frédéric Delorme<frederic.delorme@web-context.com>(refactoring)
  * 
  * @see https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ
  */
 public class Game {
 
-	private Properties props = new Properties();
+	private static ResourceBundle props;
+
+	static {
+		props = ResourceBundle.getBundle("game", Locale.ENGLISH);
+	}
 
 	/**
 	 * Load properties file.
 	 */
 	public Game() {
-		try {
-			props.load(this.getClass().getResourceAsStream(
-					"/artifact.properties"));
-		} catch (IOException e) {
-			System.out
-					.println("Unable to read release file artifact.properties.");
-		}
-
 	}
 
 	/**
@@ -39,8 +35,12 @@ public class Game {
 	 * @param key
 	 * @return
 	 */
-	public String getMessage(String key) {
-		return (String) props.get(key);
+	public static String getMessage(String key) {
+		return (String) props.getString(key);
+	}
+
+	public static void setLanguage(Locale locale) {
+		props = ResourceBundle.getBundle("game", locale);
 	}
 
 	/**
@@ -50,10 +50,10 @@ public class Game {
 	 */
 	public static void main(String[] args) {
 
-		Game game = new Game();
 		JFrame window = new JFrame(String.format("%s - %s (%s)",
-				game.getMessage("title"), game.getMessage("version"),
-				game.getMessage("createdAt")));
+				Game.getMessage("app.title"), Game.getMessage("app.version"),
+				Game.getMessage("app.createdAt")));
+
 		window.add(new GamePanel());
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setResizable(false);
