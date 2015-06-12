@@ -1,4 +1,4 @@
-package com.neet.artifact.framework.gfx.tilemap;
+package com.neet.framework.gfx.tilemap;
 
 import java.awt.image.BufferedImage;
 

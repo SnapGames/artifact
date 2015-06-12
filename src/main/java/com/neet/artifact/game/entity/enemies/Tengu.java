@@ -4,10 +4,10 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import com.neet.artifact.framework.entity.Enemy;
-import com.neet.artifact.framework.gfx.tilemap.TileMap;
-import com.neet.artifact.framework.handler.Content;
 import com.neet.artifact.game.entity.Player;
+import com.neet.framework.entity.Enemy;
+import com.neet.framework.gfx.tilemap.TileMap;
+import com.neet.framework.handler.Content;
 
 /**
  * Tengu game object.

@@ -6,12 +6,6 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
-import com.neet.artifact.framework.audio.JukeBox;
-import com.neet.artifact.framework.entity.Enemy;
-import com.neet.artifact.framework.gfx.Background;
-import com.neet.artifact.framework.gfx.tilemap.TileMap;
-import com.neet.artifact.framework.state.GameStateManager;
-import com.neet.artifact.framework.state.LevelGameState;
 import com.neet.artifact.game.entity.EnemyProjectile;
 import com.neet.artifact.game.entity.EnergyParticle;
 import com.neet.artifact.game.entity.Explosion;
@@ -23,6 +17,12 @@ import com.neet.artifact.game.entity.Title;
 import com.neet.artifact.game.entity.enemies.Gazer;
 import com.neet.artifact.game.entity.enemies.GelPop;
 import com.neet.artifact.game.entity.enemies.Tengu;
+import com.neet.framework.audio.JukeBox;
+import com.neet.framework.entity.Enemy;
+import com.neet.framework.gfx.Background;
+import com.neet.framework.gfx.tilemap.TileMap;
+import com.neet.framework.state.GameStateManager;
+import com.neet.framework.state.LevelGameState;
 
 /**
  * A second level to discover more things
@@ -255,8 +255,8 @@ public class Level1BState extends LevelGameState {
 		}
 	}
 
-	public int getNextState() {
-		return GameStateManager.LEVEL1CSTATE;
+	public String getNextState() {
+		return ArtifactGameStateManager.LEVEL1CSTATE;
 	}
 
 }

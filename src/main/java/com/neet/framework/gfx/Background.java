@@ -1,11 +1,11 @@
-package com.neet.artifact.framework.gfx;
+package com.neet.framework.gfx;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 
-import com.neet.artifact.framework.GamePanel;
+import com.neet.framework.GamePanel;
 
 public class Background {
 	

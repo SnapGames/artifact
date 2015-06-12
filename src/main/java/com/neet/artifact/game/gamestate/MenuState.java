@@ -7,13 +7,14 @@ import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 
-import com.neet.artifact.framework.Game;
-import com.neet.artifact.framework.GamePanel;
-import com.neet.artifact.framework.audio.JukeBox;
-import com.neet.artifact.framework.handler.InputHandler;
-import com.neet.artifact.framework.state.GameState;
-import com.neet.artifact.framework.state.GameStateManager;
 import com.neet.artifact.game.entity.PlayerSave;
+import com.neet.framework.Game;
+import com.neet.framework.GamePanel;
+import com.neet.framework.audio.JukeBox;
+import com.neet.framework.gfx.font.FontManager;
+import com.neet.framework.handler.InputHandler;
+import com.neet.framework.state.GameState;
+import com.neet.framework.state.GameStateManager;
 
 /**
  * The Menu for the game.
@@ -57,9 +58,12 @@ public class MenuState extends GameState {
 
 			// titles and fonts
 			titleColor = Color.WHITE;
-			titleFont = new Font("Times New Roman", Font.PLAIN, 28);
-			font = new Font("Arial", Font.PLAIN, 14);
-			font2 = new Font("Arial", Font.PLAIN, 10);
+			titleFont = FontManager.getFont("Livingst.ttf");
+			//titleFont.deriveFont(Font.BOLD,24);
+			font = FontManager.getFont("mael.ttf");
+			//font.deriveFont(Font.PLAIN,40);
+			font2 = FontManager.getFont("mael.ttf");
+			//font2.deriveFont(Font.PLAIN,40);
 
 			// load sound fx
 			JukeBox.load("/SFX/menuoption.mp3", "menuoption");
@@ -138,10 +142,10 @@ public class MenuState extends GameState {
 		case 0:
 			JukeBox.play("menuselect");
 			PlayerSave.init();
-			gsm.setActiveState(GameStateManager.LEVEL1ASTATE);
+			gsm.setActiveState(ArtifactGameStateManager.LEVEL1ASTATE);
 			break;
 		case 1:
-			gsm.setActiveState(GameStateManager.OPTIONSTATE);
+			gsm.setActiveState(ArtifactGameStateManager.OPTIONSTATE);
 			break;
 		case 2:
 			System.exit(0);

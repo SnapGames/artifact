@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.neet.artifact.framework.state;
+package com.neet.artifact.game.gamestate;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -11,10 +11,12 @@ import java.util.Locale;
 
 import javax.imageio.ImageIO;
 
-import com.neet.artifact.framework.Game;
-import com.neet.artifact.framework.GamePanel;
-import com.neet.artifact.framework.audio.JukeBox;
-import com.neet.artifact.framework.handler.InputHandler;
+import com.neet.framework.Game;
+import com.neet.framework.GamePanel;
+import com.neet.framework.audio.JukeBox;
+import com.neet.framework.handler.InputHandler;
+import com.neet.framework.state.GameState;
+import com.neet.framework.state.GameStateManager;
 
 /**
  * @author frederic
@@ -75,7 +77,7 @@ public class OptionState extends GameState {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.neet.artifact.framework.state.GameState#init()
+	 * @see com.neet.framework.state.GameState#init()
 	 */
 	@Override
 	public void init() {
@@ -85,7 +87,7 @@ public class OptionState extends GameState {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.neet.artifact.framework.state.GameState#update(long)
+	 * @see com.neet.framework.state.GameState#update(long)
 	 */
 	@Override
 	public void update(long delay) {
@@ -97,7 +99,7 @@ public class OptionState extends GameState {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.neet.artifact.framework.state.GameState#draw(java.awt.Graphics2D)
+	 * com.neet.framework.state.GameState#draw(java.awt.Graphics2D)
 	 */
 	@Override
 	public void draw(Graphics2D g) {
@@ -145,7 +147,7 @@ public class OptionState extends GameState {
 			setChoice();
 			break;
 		case 2:
-			gsm.setActiveState(GameStateManager.MENUSTATE);
+			gsm.setActiveState(ArtifactGameStateManager.MENUSTATE);
 			break;
 		}
 	}
@@ -162,7 +164,7 @@ public class OptionState extends GameState {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.neet.artifact.framework.state.GameState#handleInput()
+	 * @see com.neet.framework.state.GameState#handleInput()
 	 */
 	@Override
 	public void handleInput() {

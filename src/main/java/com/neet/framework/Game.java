@@ -1,4 +1,4 @@
-package com.neet.artifact.framework;
+package com.neet.framework;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -8,9 +8,7 @@ import javax.swing.JFrame;
 /**
  * Game The game !
  * 
- * @author 
- *         ForeignGuyMike<https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ
- *         >
+ * @author ForeignGuyMike<https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ>
  * @author Frédéric Delorme<frederic.delorme@web-context.com>(refactoring)
  * 
  * @see https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ

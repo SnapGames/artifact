@@ -1,4 +1,4 @@
-package com.neet.artifact.framework.state;
+package com.neet.framework.state;
 
 import java.awt.Graphics2D;
 

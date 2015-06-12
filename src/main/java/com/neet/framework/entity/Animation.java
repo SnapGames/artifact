@@ -1,4 +1,4 @@
-package com.neet.artifact.framework.entity;
+package com.neet.framework.entity;
 
 import java.awt.image.BufferedImage;
 

@@ -1,4 +1,4 @@
-package com.neet.artifact.framework.audio;
+package com.neet.framework.audio;
 
 import java.util.HashMap;
 

@@ -5,11 +5,11 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 
-import com.neet.artifact.framework.Game;
-import com.neet.artifact.framework.GamePanel;
-import com.neet.artifact.framework.handler.InputHandler;
-import com.neet.artifact.framework.state.GameState;
-import com.neet.artifact.framework.state.GameStateManager;
+import com.neet.framework.Game;
+import com.neet.framework.GamePanel;
+import com.neet.framework.handler.InputHandler;
+import com.neet.framework.state.GameState;
+import com.neet.framework.state.GameStateManager;
 
 /**
  * The Pause state for this game.
@@ -77,7 +77,7 @@ public class PauseState extends GameState {
 			gsm.setPaused(false);
 		if (InputHandler.isPressed(InputHandler.KeyCode.BUTTON1)) {
 			gsm.setPaused(false);
-			gsm.setActiveState(GameStateManager.MENUSTATE);
+			gsm.setActiveState(ArtifactGameStateManager.MENUSTATE);
 		}
 	}
 

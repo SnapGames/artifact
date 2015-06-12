@@ -36,7 +36,7 @@ public class HUD {
 			g.drawImage(life, 10 + i * 15, 25, null);
 		}
 		g.setColor(java.awt.Color.WHITE);
-		g.drawString(player.getTimeToString(), 290, 15);
+		g.drawString(player.getTimeToString(), 280, 15);
 	}
 	
 }

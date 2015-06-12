@@ -1,4 +1,4 @@
-package com.neet.artifact.framework.handler;
+package com.neet.framework.handler;
 
 import java.awt.event.KeyEvent;
 

@@ -1,4 +1,4 @@
-package com.neet.artifact.framework;
+package com.neet.framework;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -11,8 +11,9 @@ import java.io.File;
 
 import javax.swing.JPanel;
 
-import com.neet.artifact.framework.handler.InputHandler;
-import com.neet.artifact.framework.state.GameStateManager;
+import com.neet.artifact.game.gamestate.ArtifactGameStateManager;
+import com.neet.framework.handler.InputHandler;
+import com.neet.framework.state.GameStateManager;
 
 /**
  * Game Panel implementation.
@@ -88,7 +89,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
 		running = true;
 
-		gsm = new GameStateManager();
+		gsm = new ArtifactGameStateManager();
 
 	}
 

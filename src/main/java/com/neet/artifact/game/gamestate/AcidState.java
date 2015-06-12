@@ -7,10 +7,10 @@ import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 
-import com.neet.artifact.framework.GamePanel;
-import com.neet.artifact.framework.handler.InputHandler;
-import com.neet.artifact.framework.state.GameState;
-import com.neet.artifact.framework.state.GameStateManager;
+import com.neet.framework.GamePanel;
+import com.neet.framework.handler.InputHandler;
+import com.neet.framework.state.GameState;
+import com.neet.framework.state.GameStateManager;
 
 /**
  * 
@@ -61,7 +61,7 @@ public class AcidState extends GameState {
 
 	public void handleInput() {
 		if (InputHandler.isPressed(InputHandler.KeyCode.ESCAPE))
-			gsm.setActiveState(GameStateManager.MENUSTATE);
+			gsm.setActiveState(ArtifactGameStateManager.MENUSTATE);
 	}
 
 }

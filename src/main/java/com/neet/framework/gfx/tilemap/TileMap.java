@@ -1,4 +1,4 @@
-package com.neet.artifact.framework.gfx.tilemap;
+package com.neet.framework.gfx.tilemap;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -8,7 +8,7 @@ import java.io.InputStreamReader;
 
 import javax.imageio.ImageIO;
 
-import com.neet.artifact.framework.GamePanel;
+import com.neet.framework.GamePanel;
 
 /**
  * TileMap graphical object to render all background graphics based on simple

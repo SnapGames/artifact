@@ -6,12 +6,6 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
-import com.neet.artifact.framework.audio.JukeBox;
-import com.neet.artifact.framework.entity.Enemy;
-import com.neet.artifact.framework.gfx.Background;
-import com.neet.artifact.framework.gfx.tilemap.TileMap;
-import com.neet.artifact.framework.state.GameStateManager;
-import com.neet.artifact.framework.state.LevelGameState;
 import com.neet.artifact.game.entity.EnemyProjectile;
 import com.neet.artifact.game.entity.EnergyParticle;
 import com.neet.artifact.game.entity.Explosion;
@@ -22,11 +16,19 @@ import com.neet.artifact.game.entity.Teleport;
 import com.neet.artifact.game.entity.Title;
 import com.neet.artifact.game.entity.enemies.Gazer;
 import com.neet.artifact.game.entity.enemies.GelPop;
+import com.neet.framework.audio.JukeBox;
+import com.neet.framework.entity.Enemy;
+import com.neet.framework.gfx.Background;
+import com.neet.framework.gfx.tilemap.TileMap;
+import com.neet.framework.state.GameStateManager;
+import com.neet.framework.state.LevelGameState;
 
 /**
  * THe first discovereing level , to learn how to play !
  * 
- * @author ForeignGuyMike(https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ)
+ * @author 
+ *         ForeignGuyMike(https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ
+ *         )
  * @author Frédéric Delorme<frederic.delorme@web-context.com>(refactoring)
  *
  */
@@ -254,8 +256,8 @@ public class Level1AState extends LevelGameState {
 	 * 
 	 * @see com.neet.artifact.gamestate.LevelGameState#getNextLevel()
 	 */
-	protected int getNextLevel() {
-		return GameStateManager.LEVEL1BSTATE;
+	protected String getNextLevel() {
+		return ArtifactGameStateManager.LEVEL1BSTATE;
 	}
 
 }

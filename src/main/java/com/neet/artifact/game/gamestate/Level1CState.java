@@ -4,13 +4,6 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
-import com.neet.artifact.framework.GamePanel;
-import com.neet.artifact.framework.audio.JukeBox;
-import com.neet.artifact.framework.entity.Enemy;
-import com.neet.artifact.framework.gfx.Background;
-import com.neet.artifact.framework.gfx.tilemap.TileMap;
-import com.neet.artifact.framework.state.GameStateManager;
-import com.neet.artifact.framework.state.LevelGameState;
 import com.neet.artifact.game.entity.EnergyParticle;
 import com.neet.artifact.game.entity.Explosion;
 import com.neet.artifact.game.entity.HUD;
@@ -23,6 +16,13 @@ import com.neet.artifact.game.entity.artfact.BottomRightPiece;
 import com.neet.artifact.game.entity.artfact.TopLeftPiece;
 import com.neet.artifact.game.entity.artfact.TopRightPiece;
 import com.neet.artifact.game.entity.enemies.DarkEnergy;
+import com.neet.framework.GamePanel;
+import com.neet.framework.audio.JukeBox;
+import com.neet.framework.entity.Enemy;
+import com.neet.framework.gfx.Background;
+import com.neet.framework.gfx.tilemap.TileMap;
+import com.neet.framework.state.GameStateManager;
+import com.neet.framework.state.LevelGameState;
 
 /**
  * The final level where you fight against the boss !
@@ -230,7 +230,7 @@ public class Level1CState extends LevelGameState {
 			PlayerSave.setHealth(player.getHealth());
 			PlayerSave.setLives(player.getLives());
 			PlayerSave.setTime(player.getTime());
-			gsm.setActiveState(GameStateManager.ACIDSTATE);
+			gsm.setActiveState(ArtifactGameStateManager.ACIDSTATE);
 		}
 
 	}

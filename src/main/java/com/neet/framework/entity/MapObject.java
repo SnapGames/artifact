@@ -1,10 +1,10 @@
-package com.neet.artifact.framework.entity;
+package com.neet.framework.entity;
 
 import java.awt.Rectangle;
 
-import com.neet.artifact.framework.GamePanel;
-import com.neet.artifact.framework.gfx.tilemap.Tile;
-import com.neet.artifact.framework.gfx.tilemap.TileMap;
+import com.neet.framework.GamePanel;
+import com.neet.framework.gfx.tilemap.Tile;
+import com.neet.framework.gfx.tilemap.TileMap;
 
 /**
  * This object is the base for all Object moving on the Map (the TileMap)

@@ -64,7 +64,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>lib/</classpathPrefix>
-							<mainClass>com.neet.artifact.framework.Game</mainClass>
+							<mainClass>com.neet.framework.Game</mainClass>
 						</manifest>
 					</archive>
 				</configuration>

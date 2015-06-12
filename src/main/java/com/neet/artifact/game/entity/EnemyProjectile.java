@@ -2,8 +2,8 @@ package com.neet.artifact.game.entity;
 
 import java.awt.Graphics2D;
 
-import com.neet.artifact.framework.entity.MapObject;
-import com.neet.artifact.framework.gfx.tilemap.TileMap;
+import com.neet.framework.entity.MapObject;
+import com.neet.framework.gfx.tilemap.TileMap;
 
 
 public abstract class EnemyProjectile extends MapObject {

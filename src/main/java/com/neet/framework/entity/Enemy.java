@@ -1,7 +1,7 @@
-package com.neet.artifact.framework.entity;
+package com.neet.framework.entity;
 
-import com.neet.artifact.framework.audio.JukeBox;
-import com.neet.artifact.framework.gfx.tilemap.TileMap;
+import com.neet.framework.audio.JukeBox;
+import com.neet.framework.gfx.tilemap.TileMap;
 /**
  * Default generic enemy object.
  * 

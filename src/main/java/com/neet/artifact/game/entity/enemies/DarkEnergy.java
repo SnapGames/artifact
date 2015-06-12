@@ -3,9 +3,9 @@ package com.neet.artifact.game.entity.enemies;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
-import com.neet.artifact.framework.entity.Enemy;
-import com.neet.artifact.framework.gfx.tilemap.TileMap;
-import com.neet.artifact.framework.handler.Content;
+import com.neet.framework.entity.Enemy;
+import com.neet.framework.gfx.tilemap.TileMap;
+import com.neet.framework.handler.Content;
 
 /**
  * Dark Energy enemy object

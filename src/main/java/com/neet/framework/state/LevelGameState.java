@@ -1,4 +1,4 @@
-package com.neet.artifact.framework.state;
+package com.neet.framework.state;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -6,12 +6,6 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.neet.artifact.framework.GamePanel;
-import com.neet.artifact.framework.audio.JukeBox;
-import com.neet.artifact.framework.entity.Enemy;
-import com.neet.artifact.framework.entity.MapObject;
-import com.neet.artifact.framework.gfx.tilemap.TileMap;
-import com.neet.artifact.framework.handler.InputHandler;
 import com.neet.artifact.game.entity.EnemyProjectile;
 import com.neet.artifact.game.entity.EnergyParticle;
 import com.neet.artifact.game.entity.Explosion;
@@ -20,6 +14,13 @@ import com.neet.artifact.game.entity.Player;
 import com.neet.artifact.game.entity.PlayerSave;
 import com.neet.artifact.game.entity.Teleport;
 import com.neet.artifact.game.entity.Title;
+import com.neet.artifact.game.gamestate.ArtifactGameStateManager;
+import com.neet.framework.GamePanel;
+import com.neet.framework.audio.JukeBox;
+import com.neet.framework.entity.Enemy;
+import com.neet.framework.entity.MapObject;
+import com.neet.framework.gfx.tilemap.TileMap;
+import com.neet.framework.handler.InputHandler;
 
 /**
  * The inherited default class for all Level for this game, implementing basic
@@ -247,7 +248,7 @@ public abstract class LevelGameState extends GameState {
 		}
 		if (eventCount >= 120) {
 			if (player.getLives() == 0) {
-				gsm.setActiveState(GameStateManager.MENUSTATE);
+				gsm.setActiveState(ArtifactGameStateManager.MENUSTATE);
 			} else {
 				eventDead = blockInput = false;
 				eventCount = 0;
@@ -276,8 +277,8 @@ public abstract class LevelGameState extends GameState {
 		subtitle.sety(85);
 	}
 
-	protected int getNextLevel() {
-		return 0;
+	protected String getNextLevel() {
+		return "";
 	}
 
 	private void eventFinish() {
