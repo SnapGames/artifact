@@ -71,4 +71,9 @@
 			</plugin>
 		</plugins>
 	</build>
+	<inceptionYear>2013</inceptionYear>
+	<organization>
+		<name>ForeignGuyMike</name>
+		<url>https://www.youtube.com/playlist?list=PL-2t7SM0vDfcIedoMIghzzgQqZq45jYGv</url>
+	</organization>
 </project>

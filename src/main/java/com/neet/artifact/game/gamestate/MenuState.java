@@ -58,12 +58,9 @@ public class MenuState extends GameState {
 
 			// titles and fonts
 			titleColor = Color.WHITE;
-			titleFont = FontManager.getFont("Livingst.ttf");
-			//titleFont.deriveFont(Font.BOLD,24);
-			font = FontManager.getFont("mael.ttf");
-			//font.deriveFont(Font.PLAIN,40);
-			font2 = FontManager.getFont("mael.ttf");
-			//font2.deriveFont(Font.PLAIN,40);
+			titleFont = new Font("Times New Roman", Font.PLAIN, 28);
+			font = new Font("Arial", Font.PLAIN, 14);
+			font2 = new Font("Arial", Font.PLAIN, 10);
 
 			// load sound fx
 			JukeBox.load("/SFX/menuoption.mp3", "menuoption");
