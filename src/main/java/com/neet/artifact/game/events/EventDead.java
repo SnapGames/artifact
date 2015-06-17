@@ -48,8 +48,8 @@ public class EventDead extends Event {
 		}
 		if (eventCount >= 120) {
 			if (player.getLives() == 0) {
-				state.getGsm().setActiveState(ArtifactGameStateManager.MENUSTATE);
 				this.status=EventStatus.DONE;
+				state.getGsm().setActiveState(ArtifactGameStateManager.MENUSTATE);
 			} else {
 				state.setAttribute("blockInput", false);
 				eventManager.resetCount();

@@ -299,7 +299,6 @@ public abstract class LevelGameState extends GameState {
 		eventCount = 0;
 		tileMap.setShaking(false, 0);
 
-		eventManager.resetEvents();
 		eventManager.activate("EventStart");
 		eventManager.process(this);
 
