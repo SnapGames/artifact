@@ -4,21 +4,17 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.List;
 
 import com.neet.artifact.game.entity.EnemyProjectile;
 import com.neet.artifact.game.entity.EnergyParticle;
 import com.neet.artifact.game.entity.Explosion;
 import com.neet.artifact.game.entity.HUD;
 import com.neet.artifact.game.entity.Player;
-import com.neet.artifact.game.entity.PlayerSave;
 import com.neet.artifact.game.entity.Teleport;
 import com.neet.artifact.game.entity.Title;
-import com.neet.artifact.game.gamestate.ArtifactGameStateManager;
 import com.neet.framework.GamePanel;
-import com.neet.framework.audio.JukeBox;
 import com.neet.framework.entity.Enemy;
-import com.neet.framework.entity.MapObject;
+import com.neet.framework.event.EventManager;
 import com.neet.framework.gfx.tilemap.TileMap;
 import com.neet.framework.handler.InputHandler;
 
@@ -27,33 +23,59 @@ import com.neet.framework.handler.InputHandler;
  * common tasks.
  * 
  * @author 
- *         ForeignGuyMike(https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ)
+ *         ForeignGuyMike(https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ
+ *         )
  * @author Frédéric Delorme<frederic.delorme@web-context.com>(refactoring)
  *
  */
 public abstract class LevelGameState extends GameState {
 	/**
-	 * Objects managed on this level.
+	 * Main player
 	 */
-	protected List<MapObject> gameObjects;
-	
 	protected Player player;
+	/**
+	 * Tilemap to render full game.
+	 */
 	protected TileMap tileMap;
+	/**
+	 * All enemies attacking our hero.
+	 */
 	protected ArrayList<Enemy> enemies;
+	/**
+	 * the projectiles sent by enemies.
+	 */
 	protected ArrayList<EnemyProjectile> eprojectiles;
+	/**
+	 * Particules to be rendered.
+	 */
 	protected ArrayList<EnergyParticle> energyParticles;
+	/**
+	 * Explosions effects.
+	 */
 	protected ArrayList<Explosion> explosions;
+	/**
+	 * Head Up Display, to render, lifes, time, score.
+	 */
 	protected HUD hud;
+
+	/**
+	 * Image buffered to render some titles.
+	 */
 	protected BufferedImage hageonText;
+
 	protected Title title;
 	protected Title subtitle;
+
 	protected Teleport teleport;
-	protected boolean blockInput = false;
+	/**
+	 * Event manager to manage Event.
+	 */
+	protected EventManager eventManager;
+
+	// TODO remove this event count after migrating old event to EventManager.
 	protected int eventCount = 0;
-	protected boolean eventStart;
+
 	protected ArrayList<Rectangle> tb;
-	protected boolean eventFinish;
-	protected boolean eventDead;
 
 	/**
 	 * Default constructor to initialize level.
@@ -62,49 +84,121 @@ public abstract class LevelGameState extends GameState {
 	 */
 	public LevelGameState(GameStateManager gsm) {
 		super(gsm);
+		eventManager = new EventManager();
+		// Register event Start.
+		registerEvents();
+		attributes.put("blockInput", false);
 	}
 
+	/**
+	 * Register Event for this level.
+	 */
+	protected void registerEvents() {
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.neet.framework.state.GameState#update(long)
+	 */
+	@Override
 	public void update(long delta) {
 		// check keys
 		handleInput();
 
 		// check if end of level event should start
 		if (teleport.contains(player)) {
-			eventFinish = blockInput = true;
+			eventManager.activate("EventFinish");
+			attributes.put("blockInput", true);
 		}
 
-		// play events
-		if (eventStart)
-			eventStart();
-		if (eventDead)
-			eventDead();
-		if (eventFinish)
-			eventFinish();
+		eventManager.process(this);
 
-		// move title and subtitle
-		if (title != null) {
-			title.update();
-			if (title.shouldRemove())
-				title = null;
-		}
-		if (subtitle != null) {
-			subtitle.update();
-			if (subtitle.shouldRemove())
-				subtitle = null;
-		}
+		updateWelcomeTitle(delta);
 
 		// update player
 		player.update(delta);
 		if (player.getHealth() == 0 || player.gety() > tileMap.getHeight()) {
-			eventDead = blockInput = true;
+			eventManager.activate("EventDead");
+			attributes.put("blockInput", true);
 		}
+		// updates
+		updateTileMap(delta);
+		updateEnemies(delta);
+		updateProjectiles(delta);
+		updateExplosions(delta);
+		updateTeleport(delta);
 
-		// update tilemap
+	}
+
+	/**
+	 * @param delta
+	 */
+	private void updateWelcomeTitle(long delta) {
+		// move title and subtitle
+		if (title != null) {
+			title.update(delta);
+			if (title.shouldRemove())
+				title = null;
+		}
+		if (subtitle != null) {
+			subtitle.update(delta);
+			if (subtitle.shouldRemove())
+				subtitle = null;
+		}
+	}
+
+	/**
+	 * @param delta
+	 */
+	private void updateTileMap(long delta) {
 		tileMap.setPosition(GamePanel.WIDTH / 2 - player.getx(),
 				GamePanel.HEIGHT / 2 - player.gety());
-		tileMap.update();
+		tileMap.update(delta);
 		tileMap.fixBounds();
+	}
 
+	/**
+	 * @param delta
+	 */
+	private void updateTeleport(long delta) {
+		// update teleport
+		teleport.update(delta);
+	}
+
+	/**
+	 * @param delta
+	 */
+	private void updateExplosions(long delta) {
+		// update explosions
+		for (int i = 0; i < explosions.size(); i++) {
+			explosions.get(i).update(delta);
+			if (explosions.get(i).shouldRemove()) {
+				explosions.remove(i);
+				i--;
+			}
+		}
+	}
+
+	/**
+	 * @param delta
+	 */
+	private void updateProjectiles(long delta) {
+		// update enemy projectiles
+		for (int i = 0; i < eprojectiles.size(); i++) {
+			EnemyProjectile ep = eprojectiles.get(i);
+			ep.update(delta);
+			if (ep.shouldRemove()) {
+				eprojectiles.remove(i);
+				i--;
+			}
+		}
+	}
+
+	/**
+	 * @param delta
+	 */
+	private void updateEnemies(long delta) {
 		// update enemies
 		for (int i = 0; i < enemies.size(); i++) {
 			Enemy e = enemies.get(i);
@@ -115,31 +209,14 @@ public abstract class LevelGameState extends GameState {
 				explosions.add(new Explosion(tileMap, e.getx(), e.gety()));
 			}
 		}
-
-		// update enemy projectiles
-		for (int i = 0; i < eprojectiles.size(); i++) {
-			EnemyProjectile ep = eprojectiles.get(i);
-			ep.update(delta);
-			if (ep.shouldRemove()) {
-				eprojectiles.remove(i);
-				i--;
-			}
-		}
-
-		// update explosions
-		for (int i = 0; i < explosions.size(); i++) {
-			explosions.get(i).update();
-			if (explosions.get(i).shouldRemove()) {
-				explosions.remove(i);
-				i--;
-			}
-		}
-
-		// update teleport
-		teleport.update();
-
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.neet.framework.state.GameState#draw(java.awt.Graphics2D)
+	 */
+	@Override
 	public void draw(Graphics2D g) {
 
 		// draw tilemap
@@ -175,19 +252,21 @@ public abstract class LevelGameState extends GameState {
 		if (subtitle != null)
 			subtitle.draw(g);
 
-		// draw transition boxes
-		g.setColor(java.awt.Color.BLACK);
-		for (int i = 0; i < tb.size(); i++) {
-			g.fill(tb.get(i));
-		}
-
+		eventManager.draw(g);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.neet.framework.state.GameState#handleInput()
+	 */
+	@Override
 	public void handleInput() {
 		if (InputHandler.isPressed(InputHandler.KeyCode.ESCAPE))
 			gsm.setPaused(true);
-		if (blockInput || player.getHealth() == 0)
+		if ((Boolean) attributes.get("blockInput") || player.getHealth() == 0) {
 			return;
+		}
 		player.setUp(InputHandler.getKeyState(InputHandler.KeyCode.UP));
 		player.setLeft(InputHandler.getKeyState(InputHandler.KeyCode.LEFT));
 		player.setDown(InputHandler.getKeyState(InputHandler.KeyCode.DOWN));
@@ -202,108 +281,40 @@ public abstract class LevelGameState extends GameState {
 			player.setCharging();
 	}
 
-	protected void eventStart() {
-		eventCount++;
-		if (eventCount == 1) {
-			tb.clear();
-			tb.add(new Rectangle(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT / 2));
-			tb.add(new Rectangle(0, 0, GamePanel.WIDTH / 2, GamePanel.HEIGHT));
-			tb.add(new Rectangle(0, GamePanel.HEIGHT / 2, GamePanel.WIDTH,
-					GamePanel.HEIGHT / 2));
-			tb.add(new Rectangle(GamePanel.WIDTH / 2, 0, GamePanel.WIDTH / 2,
-					GamePanel.HEIGHT));
-		}
-		if (eventCount > 1 && eventCount < 60) {
-			tb.get(0).height -= 4;
-			tb.get(1).width -= 6;
-			tb.get(2).y += 4;
-			tb.get(3).x += 6;
-		}
-		if (eventCount == 30)
-			title.begin();
-		if (eventCount == 60) {
-			eventStart = blockInput = false;
-			eventCount = 0;
-			subtitle.begin();
-			tb.clear();
-		}
-	}
-
-	/**
-	 * Process the dead event !
-	 */
-	protected void eventDead() {
-		eventCount++;
-		if (eventCount == 1)
-			player.setDead();
-		if (eventCount == 60) {
-			tb.clear();
-			tb.add(new Rectangle(GamePanel.WIDTH / 2, GamePanel.HEIGHT / 2, 0,
-					0));
-		} else if (eventCount > 60) {
-			tb.get(0).x -= 6;
-			tb.get(0).y -= 4;
-			tb.get(0).width += 12;
-			tb.get(0).height += 8;
-		}
-		if (eventCount >= 120) {
-			if (player.getLives() == 0) {
-				gsm.setActiveState(ArtifactGameStateManager.MENUSTATE);
-			} else {
-				eventDead = blockInput = false;
-				eventCount = 0;
-				player.loseLife();
-				reset();
-			}
-		}
-	}
-
 	protected void populateEnemies() {
 
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.neet.framework.state.GameState#reset()
+	 */
+	@Override
 	public void reset() {
 		player.loseLife();
 		player.reset();
 		populateEnemies();
-		blockInput = true;
+		attributes.put("blockInput", true);
 		eventCount = 0;
 		tileMap.setShaking(false, 0);
-		eventStart = true;
-		eventStart();
-		title = new Title(hageonText.getSubimage(0, 0, 178, 20));
-		title.sety(60);
-		subtitle = new Title(hageonText.getSubimage(0, 33, 91, 13));
-		subtitle.sety(85);
+
+		eventManager.resetEvents();
+		eventManager.activate("EventStart");
+		eventManager.process(this);
+
+		gameObjects.put("player", player);
+		gameObjects.put("tilemap", tileMap);
+		gameObjects.put("title", title);
+		gameObjects.put("subtitle", subtitle);
+
 	}
 
 	protected String getNextLevel() {
 		return "";
 	}
 
-	private void eventFinish() {
-		eventCount++;
-		if (eventCount == 1) {
-			JukeBox.play("teleport");
-			player.setTeleporting(true);
-			player.stop();
-		} else if (eventCount == 120) {
-			tb.clear();
-			tb.add(new Rectangle(GamePanel.WIDTH / 2, GamePanel.HEIGHT / 2, 0,
-					0));
-		} else if (eventCount > 120) {
-			tb.get(0).x -= 6;
-			tb.get(0).y -= 4;
-			tb.get(0).width += 12;
-			tb.get(0).height += 8;
-			JukeBox.stop("teleport");
-		}
-		if (eventCount == 180) {
-			PlayerSave.setHealth(player.getHealth());
-			PlayerSave.setLives(player.getLives());
-			PlayerSave.setTime(player.getTime());
-			gsm.setActiveState(getNextLevel());
-		}
+	public void load(String levelFile) {
 
 	}
 

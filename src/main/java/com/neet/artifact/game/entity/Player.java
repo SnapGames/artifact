@@ -583,7 +583,7 @@ public class Player extends MapObject implements GameObject {
 			setAnimation(IDLE);
 		}
 
-		animation.update();
+		animation.update(delta);
 
 		// set direction
 		if (!attacking && !upattacking && !charging && !knockback) {

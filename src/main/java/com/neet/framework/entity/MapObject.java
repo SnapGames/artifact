@@ -13,7 +13,7 @@ import com.neet.framework.gfx.tilemap.TileMap;
  * @author Frédéric Delorme<frederic.delorme@web-context.com>(refactoring)
  *
  */
-public abstract class MapObject {
+public abstract class MapObject implements GameObject {
 
 	// tile stuff
 	protected TileMap tileMap;
@@ -316,11 +316,11 @@ public abstract class MapObject {
 	}
 
 	/**
-	 * @param debug the debug to set
+	 * @param debug
+	 *            the debug to set
 	 */
 	public void setDebug(boolean debug) {
 		this.debug = debug;
 	}
-	
-	
+
 }

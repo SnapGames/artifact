@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import javax.imageio.ImageIO;
 
 import com.neet.framework.GamePanel;
+import com.neet.framework.entity.GameObject;
 
 /**
  * TileMap graphical object to render all background graphics based on simple
@@ -20,7 +21,7 @@ import com.neet.framework.GamePanel;
  * @author Frédéric Delorme<frederic.delorme@web-context.com>(refactoring)
  *
  */
-public class TileMap {
+public class TileMap implements GameObject {
 
 	// position
 	private double x;
@@ -64,9 +65,6 @@ public class TileMap {
 	 */
 	public TileMap(int tileSize) {
 		this.tileSize = tileSize;
-		numRowsToDraw = GamePanel.HEIGHT / tileSize + 2;
-		numColsToDraw = GamePanel.WIDTH / tileSize + 2;
-		tween = 0.07;
 	}
 
 	/**
@@ -201,7 +199,7 @@ public class TileMap {
 	/**
 	 * update the tilemap. here mainly position of the tilemap.
 	 */
-	public void update() {
+	public void update(long delta) {
 		if (shaking) {
 			this.x += Math.random() * intensity - intensity / 2;
 			this.y += Math.random() * intensity - intensity / 2;
@@ -266,6 +264,27 @@ public class TileMap {
 
 	public int getNumCols() {
 		return numCols;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.neet.framework.entity.GameObject#init()
+	 */
+	@Override
+	public void init() {
+		numRowsToDraw = GamePanel.HEIGHT / tileSize + 2;
+		numColsToDraw = GamePanel.WIDTH / tileSize + 2;
+		tween = 0.07;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.neet.framework.entity.GameObject#reset()
+	 */
+	@Override
+	public void reset() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -108,7 +108,7 @@ public class Spirit extends Enemy {
 		x += dx;
 		y += dy;
 
-		animation.update();
+		animation.update(delta);
 
 		if (!active)
 			return;

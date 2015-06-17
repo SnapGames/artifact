@@ -60,5 +60,15 @@ public class EnergyParticle extends MapObject {
 	public void draw(Graphics2D g) {
 		super.draw(g);
 	}
+
+	@Override
+	public void reset() {
+		
+	}
+
+	@Override
+	public void update(long delay) {
+		
+	}
 	
 }

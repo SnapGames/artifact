@@ -1,7 +1,6 @@
 package com.neet.artifact.game.gamestate;
 
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
@@ -16,6 +15,9 @@ import com.neet.artifact.game.entity.Teleport;
 import com.neet.artifact.game.entity.Title;
 import com.neet.artifact.game.entity.enemies.Gazer;
 import com.neet.artifact.game.entity.enemies.GelPop;
+import com.neet.artifact.game.events.EventDead;
+import com.neet.artifact.game.events.EventFinish;
+import com.neet.artifact.game.events.EventStart;
 import com.neet.framework.audio.JukeBox;
 import com.neet.framework.entity.Enemy;
 import com.neet.framework.gfx.Background;
@@ -24,7 +26,7 @@ import com.neet.framework.state.GameStateManager;
 import com.neet.framework.state.LevelGameState;
 
 /**
- * THe first discovereing level , to learn how to play !
+ * THe first discovering level , to learn how to play !
  * 
  * @author 
  *         ForeignGuyMike(https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ
@@ -38,9 +40,25 @@ public class Level1AState extends LevelGameState {
 	private Background clouds;
 	private Background mountains;
 
+	/**
+	 * Level Constructor.
+	 * 
+	 * @param gsm
+	 */
 	public Level1AState(GameStateManager gsm) {
 		super(gsm);
 		init();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.neet.framework.state.LevelGameState#registerEvents()
+	 */
+	public void registerEvents() {
+		eventManager.register(new EventStart());
+		eventManager.register(new EventDead());
+		eventManager.register(new EventFinish());
 	}
 
 	public void init() {
@@ -49,8 +67,13 @@ public class Level1AState extends LevelGameState {
 		clouds = new Background("/Backgrounds/clouds.gif", 0.1);
 		mountains = new Background("/Backgrounds/mountains.gif", 0.2);
 
+		gameObjects.put("sky", sky);
+		gameObjects.put("clouds", clouds);
+		gameObjects.put("mountains", mountains);
+
 		// tilemap
 		tileMap = new TileMap(30);
+		tileMap.init();
 		tileMap.loadTiles("/Tilesets/ruinstileset.gif");
 		tileMap.loadMap("/Maps/level1a.map");
 		tileMap.setPosition(140, 0);
@@ -58,12 +81,16 @@ public class Level1AState extends LevelGameState {
 				tileMap.getHeight() - 2 * tileMap.getTileSize(), 0, 0);
 		tileMap.setTween(1);
 
+		gameObjects.put("tilemap", tileMap);
+
 		// player
 		player = new Player(tileMap);
 		player.setPosition(300, 161);
 		player.setHealth(PlayerSave.getHealth());
 		player.setLives(PlayerSave.getLives());
 		player.setTime(PlayerSave.getTime());
+
+		gameObjects.put("player", player);
 
 		// enemies
 		enemies = new ArrayList<Enemy>();
@@ -82,6 +109,8 @@ public class Level1AState extends LevelGameState {
 		// hud
 		hud = new HUD(player);
 
+		gameObjects.put("hud", hud);
+
 		// title and subtitle
 		try {
 			hageonText = ImageIO.read(getClass().getResourceAsStream(
@@ -94,14 +123,17 @@ public class Level1AState extends LevelGameState {
 			e.printStackTrace();
 		}
 
+		gameObjects.put("title", title);
+
+		gameObjects.put("subtitle", subtitle);
+
 		// teleport
 		teleport = new Teleport(tileMap);
 		teleport.setPosition(3700, 131);
 
 		// start event
-		eventStart = true;
-		tb = new ArrayList<Rectangle>();
-		eventStart();
+		eventManager.activate("EventStart");
+		eventManager.process(this);
 
 		// sfx
 		JukeBox.load("/SFX/teleport.mp3", "teleport");
@@ -223,11 +255,7 @@ public class Level1AState extends LevelGameState {
 		if (subtitle != null)
 			subtitle.draw(g);
 
-		// draw transition boxes
-		g.setColor(java.awt.Color.BLACK);
-		for (int i = 0; i < tb.size(); i++) {
-			g.fill(tb.get(i));
-		}
+		eventManager.draw(g);
 
 	}
 
@@ -237,16 +265,20 @@ public class Level1AState extends LevelGameState {
 
 	// reset level
 	public void reset() {
+		super.reset();
 		player.reset();
 		player.setPosition(300, 161);
 		populateEnemies();
-		blockInput = true;
-		eventCount = 0;
+		attributes.put("blockInput", false);
 		tileMap.setShaking(false, 0);
-		eventStart = true;
-		eventStart();
+
+		eventManager.resetCount();
+		eventManager.activate("EventStart");
+		eventManager.process(this);
+
 		title = new Title(hageonText.getSubimage(0, 0, 178, 20));
 		title.sety(60);
+
 		subtitle = new Title(hageonText.getSubimage(0, 33, 91, 13));
 		subtitle.sety(85);
 	}

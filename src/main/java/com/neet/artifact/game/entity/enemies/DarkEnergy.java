@@ -63,6 +63,12 @@ public class DarkEnergy extends Enemy {
 		permanent = b;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.neet.framework.entity.Enemy#update(long)
+	 */
+	@Override
 	public void update(long delta) {
 
 		if (start) {
@@ -98,7 +104,7 @@ public class DarkEnergy extends Enemy {
 		}
 
 		// update animation
-		animation.update();
+		animation.update(delta);
 
 		if (!permanent) {
 			if (x < 0 || x > tileMap.getWidth() || y < 0
@@ -112,6 +118,12 @@ public class DarkEnergy extends Enemy {
 
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.neet.framework.entity.MapObject#draw(java.awt.Graphics2D)
+	 */
+	@Override
 	public void draw(Graphics2D g) {
 		super.draw(g);
 	}

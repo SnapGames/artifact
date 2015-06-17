@@ -47,6 +47,12 @@ public class Gazer extends Enemy {
 
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.neet.framework.entity.Enemy#update(long)
+	 */
+	@Override
 	public void update(long delta) {
 
 		// check if done flinching
@@ -61,10 +67,16 @@ public class Gazer extends Enemy {
 		y = Math.sin(b * tick) + y;
 
 		// update animation
-		animation.update();
+		animation.update(delta);
 
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.neet.framework.entity.MapObject#draw(java.awt.Graphics2D)
+	 */
+	@Override
 	public void draw(Graphics2D g) {
 
 		if (flinching) {

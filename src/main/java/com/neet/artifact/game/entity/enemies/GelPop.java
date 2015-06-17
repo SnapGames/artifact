@@ -78,6 +78,7 @@ public class GelPop extends Enemy {
 	 * 
 	 * @see com.neet.artifact.entity.Enemy#update()
 	 */
+	@Override
 	public void update(long delta) {
 
 		if (!active) {
@@ -113,7 +114,7 @@ public class GelPop extends Enemy {
 		}
 
 		// update animation
-		animation.update();
+		animation.update(delta);
 
 	}
 
@@ -122,6 +123,7 @@ public class GelPop extends Enemy {
 	 * 
 	 * @see com.neet.artifact.entity.MapObject#draw(java.awt.Graphics2D)
 	 */
+	@Override
 	public void draw(Graphics2D g) {
 
 		if (flinching) {

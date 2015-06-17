@@ -36,12 +36,18 @@ public class Teleport extends MapObject {
 		}
 	}
 	
-	public void update() {
-		animation.update();
-	}
-	
 	public void draw(Graphics2D g) {
 		super.draw(g);
+	}
+
+	@Override
+	public void reset() {
+		
+	}
+
+	@Override
+	public void update(long delta) {
+		animation.update(delta);
 	}
 	
 }

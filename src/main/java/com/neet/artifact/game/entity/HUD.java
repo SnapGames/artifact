@@ -5,7 +5,9 @@ import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 
-public class HUD {
+import com.neet.framework.entity.GameObject;
+
+public class HUD  implements GameObject{
 	
 	private Player player;
 	
@@ -37,6 +39,16 @@ public class HUD {
 		}
 		g.setColor(java.awt.Color.WHITE);
 		g.drawString(player.getTimeToString(), 280, 15);
+	}
+
+	@Override
+	public void reset() {
+		
+	}
+
+	@Override
+	public void update(long delay) {
+		
 	}
 	
 }

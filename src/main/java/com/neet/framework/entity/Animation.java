@@ -39,8 +39,9 @@ public class Animation {
 	
 	/**
 	 * update animation phase
+	 * @param delta 
 	 */
-	public void update() {
+	public void update(long delta) {
 		
 		if(delay == -1) return;
 		

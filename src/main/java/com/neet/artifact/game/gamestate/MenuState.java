@@ -11,7 +11,6 @@ import com.neet.artifact.game.entity.PlayerSave;
 import com.neet.framework.Game;
 import com.neet.framework.GamePanel;
 import com.neet.framework.audio.JukeBox;
-import com.neet.framework.gfx.font.FontManager;
 import com.neet.framework.handler.InputHandler;
 import com.neet.framework.state.GameState;
 import com.neet.framework.state.GameStateManager;
@@ -19,21 +18,21 @@ import com.neet.framework.state.GameStateManager;
 /**
  * The Menu for the game.
  * 
- * @author ForeignGuyMike(https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ)
+ * @author 
+ *         ForeignGuyMike(https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ
+ *         )
  * @author Frédéric Delorme<frederic.delorme@web-context.com>(refactoring)
  *
  */
 public class MenuState extends GameState {
 
 	private BufferedImage head;
-	
+
 	private int currentChoice = 0;
 
-	private String[] options = { 
-			Game.getMessage("menu.item.start"),
+	private String[] options = { Game.getMessage("menu.item.start"),
 			Game.getMessage("menu.item.options"),
-			Game.getMessage("menu.item.quit")
-			};
+			Game.getMessage("menu.item.quit") };
 
 	private Color titleColor;
 	private Font titleFont;
@@ -71,12 +70,12 @@ public class MenuState extends GameState {
 		}
 
 	}
-	public void setLanguage(){
-		options[0]=Game.getMessage("menu.item.start");
-		options[1]=Game.getMessage("menu.item.options");
-		options[2]=Game.getMessage("menu.item.quit");
+
+	public void setLanguage() {
+		options[0] = Game.getMessage("menu.item.start");
+		options[1] = Game.getMessage("menu.item.options");
+		options[2] = Game.getMessage("menu.item.quit");
 	}
-	
 
 	/*
 	 * (non-Javadoc)
@@ -123,7 +122,7 @@ public class MenuState extends GameState {
 		g.drawString(options[2], 145, 205);
 
 		// draw floating head
-		g.drawImage(head, 125, 154+(20*currentChoice), null);
+		g.drawImage(head, 125, 154 + (20 * currentChoice), null);
 
 		// other
 		g.setFont(font2);
@@ -135,7 +134,7 @@ public class MenuState extends GameState {
 	 * Menu item select.
 	 */
 	private void select() {
-		switch(currentChoice){
+		switch (currentChoice) {
 		case 0:
 			JukeBox.play("menuselect");
 			PlayerSave.init();
@@ -168,6 +167,11 @@ public class MenuState extends GameState {
 				currentChoice++;
 			}
 		}
+	}
+
+	@Override
+	public void reset() {
+
 	}
 
 }

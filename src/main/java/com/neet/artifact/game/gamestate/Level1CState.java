@@ -1,7 +1,6 @@
 package com.neet.artifact.game.gamestate;
 
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import java.util.ArrayList;
 
 import com.neet.artifact.game.entity.EnergyParticle;
@@ -16,6 +15,10 @@ import com.neet.artifact.game.entity.artfact.BottomRightPiece;
 import com.neet.artifact.game.entity.artfact.TopLeftPiece;
 import com.neet.artifact.game.entity.artfact.TopRightPiece;
 import com.neet.artifact.game.entity.enemies.DarkEnergy;
+import com.neet.artifact.game.events.EventDead;
+import com.neet.artifact.game.events.EventEndGame;
+import com.neet.artifact.game.events.EventFinish;
+import com.neet.artifact.game.events.EventStart;
 import com.neet.framework.GamePanel;
 import com.neet.framework.audio.JukeBox;
 import com.neet.framework.entity.Enemy;
@@ -27,7 +30,9 @@ import com.neet.framework.state.LevelGameState;
 /**
  * The final level where you fight against the boss !
  *
- * @author ForeignGuyMike(https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ)
+ * @author 
+ *         ForeignGuyMike(https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ
+ *         )
  * @author Frédéric Delorme<frederic.delorme@web-context.com>(refactoring)
  *
  */
@@ -61,19 +66,34 @@ public class Level1CState extends LevelGameState {
 	/*
 	 * (non-Javadoc)
 	 * 
+	 * @see com.neet.framework.state.LevelGameState#registerEvents()
+	 */
+	public void registerEvents() {
+		eventManager.register(new EventStart());
+		eventManager.register(new EventDead());
+		eventManager.register(new EventFinish());
+		eventManager.register(new EventEndGame());
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.neet.artifact.gamestate.GameState#init()
 	 */
 	public void init() {
 
 		// backgrounds
 		temple = new Background("/Backgrounds/temple.gif", 0.5, 0);
+		gameObjects.put("temple", temple);
 
 		// tilemap
 		tileMap = new TileMap(30);
+		tileMap.init();
 		tileMap.loadTiles("/Tilesets/ruinstileset.gif");
 		tileMap.loadMap("/Maps/level1c.map");
 		tileMap.setPosition(140, 0);
 		tileMap.setTween(1);
+		gameObjects.put("tilemap", tileMap);
 
 		// player
 		player = new Player(tileMap);
@@ -81,6 +101,8 @@ public class Level1CState extends LevelGameState {
 		player.setHealth(PlayerSave.getHealth());
 		player.setLives(PlayerSave.getLives());
 		player.setTime(PlayerSave.getTime());
+
+		gameObjects.put("player", player);
 
 		// explosions
 		explosions = new ArrayList<Explosion>();
@@ -98,9 +120,13 @@ public class Level1CState extends LevelGameState {
 		// hud
 		hud = new HUD(player);
 
+		gameObjects.put("hud", hud);
+
 		// portal
 		portal = new Portal(tileMap);
 		portal.setPosition(160, 154);
+
+		gameObjects.put("portal", portal);
 
 		// artifact
 		tlp = new TopLeftPiece(tileMap);
@@ -113,9 +139,8 @@ public class Level1CState extends LevelGameState {
 		brp.setPosition(162, 112);
 
 		// start event
-		eventStart = blockInput = true;
-		tb = new ArrayList<Rectangle>();
-		eventStart();
+		eventManager.activate("EventStart");
+		eventManager.process(this);
 
 		// sfx
 		JukeBox.load("/SFX/teleport.mp3", "teleport");
@@ -145,25 +170,24 @@ public class Level1CState extends LevelGameState {
 	 * 
 	 * @see com.neet.artifact.gamestate.LevelGameState#update()
 	 */
-	public void update(long delay) {
-		super.update(delay);
+	public void update(long delta) {
+		super.update(delta);
 		// check if boss dead event should start
-		if (!eventFinish && spirit.isDead()) {
-			eventBossDead = blockInput = true;
+		if (!eventManager.isActive("EventFinish") && spirit.isDead()) {
+			eventBossDead = true;
+			attributes.put("blockInput", true);
 		}
 
-		if (eventFinish)
-			eventFinish();
 		if (eventPortal)
 			eventPortal();
 		if (eventBossDead)
 			eventBossDead();
 
 		// update artifacts
-		tlp.update();
-		trp.update();
-		blp.update();
-		brp.update();
+		tlp.update(delta);
+		trp.update(delta);
+		blp.update(delta);
+		brp.update(delta);
 
 	}
 
@@ -197,42 +221,29 @@ public class Level1CState extends LevelGameState {
 
 	}
 
-
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.neet.artifact.gamestate.LevelGameState#reset()
 	 */
 	public void reset() {
 		super.reset();
 		player.setPosition(50, 190);
 		populateEnemies();
-		eventStart = blockInput = true;
+		eventManager.activate("EventStart");
+		eventManager.resetCount();
 		eventCount = 0;
-		eventStart();
+		eventManager.process(this);
 	}
 
-	/**
-	 * This is End !!!
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.neet.framework.state.GameState#nextState()
 	 */
-	private void eventFinish() {
-		eventCount++;
-		if (eventCount == 1) {
-			tb.clear();
-			tb.add(new Rectangle(GamePanel.WIDTH / 2, GamePanel.HEIGHT / 2, 0,
-					0));
-		} else if (eventCount > 1) {
-			tb.get(0).x -= 6;
-			tb.get(0).y -= 4;
-			tb.get(0).width += 12;
-			tb.get(0).height += 8;
-		}
-		if (eventCount == 60) {
-			PlayerSave.setHealth(player.getHealth());
-			PlayerSave.setLives(player.getLives());
-			PlayerSave.setTime(player.getTime());
-			gsm.setActiveState(ArtifactGameStateManager.ACIDSTATE);
-		}
-
+	@Override
+	public String nextState() {
+		return ArtifactGameStateManager.ACIDSTATE;
 	}
 
 	/**
@@ -243,6 +254,7 @@ public class Level1CState extends LevelGameState {
 		if (eventCount == 1) {
 			if (portal.isOpened()) {
 				eventCount = 360;
+				eventManager.setCount(360);
 			}
 		}
 		if (eventCount > 60 && eventCount < 180) {
@@ -291,8 +303,9 @@ public class Level1CState extends LevelGameState {
 					JukeBox.getFrames("level1boss") - 4000);
 		}
 		if (eventCount == 420) {
-			eventPortal = blockInput = false;
-			eventCount = 0;
+			eventPortal = false;
+			attributes.put("blockInput", false);
+			eventManager.resetCount();
 			spirit.setActive();
 		}
 
@@ -316,7 +329,8 @@ public class Level1CState extends LevelGameState {
 		if (eventCount == 390) {
 			eventBossDead = false;
 			eventCount = 0;
-			eventFinish = true;
+			eventManager.resetCount();
+			eventManager.activate("EventFinish");
 		}
 	}
 
