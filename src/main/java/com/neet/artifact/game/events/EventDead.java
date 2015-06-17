@@ -28,7 +28,6 @@ public class EventDead extends Event {
 	public EventDead() {
 		this.eventCode = "EventDead";
 		tb = new ArrayList<>();
-
 	}
 
 	@Override
@@ -50,11 +49,13 @@ public class EventDead extends Event {
 		if (eventCount >= 120) {
 			if (player.getLives() == 0) {
 				state.getGsm().setActiveState(ArtifactGameStateManager.MENUSTATE);
+				this.status=EventStatus.DONE;
 			} else {
 				state.setAttribute("blockInput", false);
 				eventManager.resetCount();
 				player.loseLife();
 				state.reset();
+				this.status=EventStatus.DONE;
 			}
 		}
 	}

@@ -10,6 +10,7 @@ import com.neet.artifact.game.entity.Player;
 import com.neet.artifact.game.entity.PlayerSave;
 import com.neet.framework.GamePanel;
 import com.neet.framework.event.Event;
+import com.neet.framework.event.Event.EventStatus;
 import com.neet.framework.state.GameState;
 
 /**
@@ -48,6 +49,7 @@ public class EventEndGame extends Event {
 			PlayerSave.setLives(player.getLives());
 			PlayerSave.setTime(player.getTime());
 			state.getGsm().setActiveState(state.nextState());
+			this.status=EventStatus.DONE;
 		}
 	}
 }

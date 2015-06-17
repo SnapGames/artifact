@@ -52,11 +52,11 @@ public class EventStart extends Event {
 			((Title) state.getGameObject("title")).begin();
 		}
 		if (eventCount == 60) {
-			this.status = EventStatus.DONE;
 			state.setAttribute("blockInput", false);
 			eventCount = 0;
 			((Title) state.getGameObject("subtitle")).begin();
 			tb.clear();
+			this.status = EventStatus.DONE;
 		}
 	}
 
