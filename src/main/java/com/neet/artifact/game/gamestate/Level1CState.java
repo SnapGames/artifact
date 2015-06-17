@@ -84,6 +84,7 @@ public class Level1CState extends LevelGameState {
 
 		// backgrounds
 		temple = new Background("/Backgrounds/temple.gif", 0.5, 0);
+		gameObjects.put("temple", temple);
 
 		// tilemap
 		tileMap = new TileMap(30);
@@ -92,6 +93,7 @@ public class Level1CState extends LevelGameState {
 		tileMap.loadMap("/Maps/level1c.map");
 		tileMap.setPosition(140, 0);
 		tileMap.setTween(1);
+		gameObjects.put("tilemap", tileMap);
 
 		// player
 		player = new Player(tileMap);
@@ -99,6 +101,8 @@ public class Level1CState extends LevelGameState {
 		player.setHealth(PlayerSave.getHealth());
 		player.setLives(PlayerSave.getLives());
 		player.setTime(PlayerSave.getTime());
+
+		gameObjects.put("player", player);
 
 		// explosions
 		explosions = new ArrayList<Explosion>();
@@ -116,9 +120,13 @@ public class Level1CState extends LevelGameState {
 		// hud
 		hud = new HUD(player);
 
+		gameObjects.put("hud", hud);
+
 		// portal
 		portal = new Portal(tileMap);
 		portal.setPosition(160, 154);
+
+		gameObjects.put("portal", portal);
 
 		// artifact
 		tlp = new TopLeftPiece(tileMap);
@@ -162,8 +170,8 @@ public class Level1CState extends LevelGameState {
 	 * 
 	 * @see com.neet.artifact.gamestate.LevelGameState#update()
 	 */
-	public void update(long delay) {
-		super.update(delay);
+	public void update(long delta) {
+		super.update(delta);
 		// check if boss dead event should start
 		if (!eventManager.isActive("EventFinish") && spirit.isDead()) {
 			eventBossDead = true;
@@ -176,10 +184,10 @@ public class Level1CState extends LevelGameState {
 			eventBossDead();
 
 		// update artifacts
-		tlp.update();
-		trp.update();
-		blp.update();
-		brp.update();
+		tlp.update(delta);
+		trp.update(delta);
+		blp.update(delta);
+		brp.update(delta);
 
 	}
 

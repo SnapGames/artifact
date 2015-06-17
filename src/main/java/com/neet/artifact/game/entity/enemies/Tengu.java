@@ -96,7 +96,7 @@ public class Tengu extends Enemy {
 		setPosition(xtemp, ytemp);
 
 		// update animation
-		animation.update();
+		animation.update(delta);
 
 		if (player.getx() < x)
 			facingRight = false;

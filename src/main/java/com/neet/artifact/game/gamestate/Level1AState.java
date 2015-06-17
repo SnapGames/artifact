@@ -26,7 +26,7 @@ import com.neet.framework.state.GameStateManager;
 import com.neet.framework.state.LevelGameState;
 
 /**
- * THe first discovereing level , to learn how to play !
+ * THe first discovering level , to learn how to play !
  * 
  * @author 
  *         ForeignGuyMike(https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ
@@ -122,6 +122,10 @@ public class Level1AState extends LevelGameState {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
+		gameObjects.put("title", title);
+
+		gameObjects.put("subtitle", subtitle);
 
 		// teleport
 		teleport = new Teleport(tileMap);
@@ -265,7 +269,7 @@ public class Level1AState extends LevelGameState {
 		player.reset();
 		player.setPosition(300, 161);
 		populateEnemies();
-		attributes.put("blockInput", new Boolean(true));
+		attributes.put("blockInput", false);
 		tileMap.setShaking(false, 0);
 
 		eventManager.resetCount();

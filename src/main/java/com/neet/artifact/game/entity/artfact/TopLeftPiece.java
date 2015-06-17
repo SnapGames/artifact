@@ -27,14 +27,38 @@ public class TopLeftPiece extends MapObject {
 		}
 	}
 
-	public void update() {
-		x += dx;
-		y += dy;
-		animation.update();
-	}
-
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.neet.framework.entity.MapObject#draw(java.awt.Graphics2D)
+	 */
+	@Override
 	public void draw(Graphics2D g) {
 		super.draw(g);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.neet.framework.entity.GameObject#reset()
+	 */
+	@Override
+	public void reset() {
+		// TODO Auto-generated method stub
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.neet.framework.entity.GameObject#update(long)
+	 */
+	@Override
+	public void update(long delta) {
+		x += dx;
+		y += dy;
+		animation.update(delta);
+
 	}
 
 }

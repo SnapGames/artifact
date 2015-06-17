@@ -42,9 +42,29 @@ public class Explosion extends MapObject {
 		}
 		
 	}
+
+	public boolean shouldRemove() { return remove; }
 	
-	public void update() {
-		animation.update();
+	public void draw(Graphics2D g) {
+		setMapPosition();
+		for(int i = 0; i < points.length; i++) {
+			g.drawImage(
+				animation.getImage(),
+				(int) (points[i].x + xmap - width / 2),
+				(int) (points[i].y + ymap - height / 2),
+				null
+			);
+		}
+	}
+
+	@Override
+	public void reset() {
+		
+	}
+
+	@Override
+	public void update(long delta) {
+		animation.update(delta);
 		if(animation.hasPlayedOnce()) {
 			remove = true;
 		}
@@ -60,21 +80,6 @@ public class Explosion extends MapObject {
 		points[6].y -= speed;
 		points[7].x += diagSpeed;
 		points[7].y -= diagSpeed;
-		
-	}
-	
-	public boolean shouldRemove() { return remove; }
-	
-	public void draw(Graphics2D g) {
-		setMapPosition();
-		for(int i = 0; i < points.length; i++) {
-			g.drawImage(
-				animation.getImage(),
-				(int) (points[i].x + xmap - width / 2),
-				(int) (points[i].y + ymap - height / 2),
-				null
-			);
-		}
 	}
 	
 }

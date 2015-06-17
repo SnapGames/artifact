@@ -109,11 +109,15 @@ public class Level1BState extends LevelGameState {
 
 		// title and subtitle
 		try {
+			title = new Title(hageonText.getSubimage(0, 0, 178, 20));
+			title.sety(60);
 			subtitle = new Title(hageonText.getSubimage(0, 33, 91, 13));
 			subtitle.sety(85);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		gameObjects.put("title", title);
+		gameObjects.put("subtitle", subtitle);
 
 		// teleport
 		teleport = new Teleport(tileMap);
@@ -221,12 +225,9 @@ public class Level1BState extends LevelGameState {
 		super.update(delay);
 		// check if quake event should start
 		if (player.getx() > 2175 && !tileMap.isShaking()) {
-			eventQuake = true;
+			eventManager.activate("EventEarthQuake");
 			attributes.put("blockingState", true);
 		}
-
-		if (eventQuake)
-			eventQuake();
 
 		// move backgrounds
 		temple.setPosition(tileMap.getx(), tileMap.gety());
@@ -242,32 +243,6 @@ public class Level1BState extends LevelGameState {
 		super.draw(g);
 		// draw background
 		temple.draw(g);
-	}
-
-	/**
-	 * manage the new Earthquake event.
-	 */
-	public void eventQuake() {
-		eventCount++;
-		if (eventCount == 1) {
-			player.stop();
-			player.setPosition(2175, player.gety());
-		}
-		if (eventCount == 60) {
-			player.setEmote(Player.CONFUSED);
-		}
-		if (eventCount == 120)
-			player.setEmote(Player.NONE);
-		if (eventCount == 150)
-			tileMap.setShaking(true, 10);
-		if (eventCount == 180)
-			player.setEmote(Player.SURPRISED);
-		if (eventCount == 300) {
-			player.setEmote(Player.NONE);
-			eventQuake = false;
-			attributes.put("blockingState", false);
-			eventManager.resetCount();
-		}
 	}
 
 	public String getNextState() {

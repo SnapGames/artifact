@@ -48,8 +48,9 @@ public class EventStart extends Event {
 			tb.get(2).y += 4;
 			tb.get(3).x += 6;
 		}
-		if (eventCount == 30)
+		if (eventCount == 30) {
 			((Title) state.getGameObject("title")).begin();
+		}
 		if (eventCount == 60) {
 			this.status = EventStatus.DONE;
 			state.setAttribute("blockInput", false);

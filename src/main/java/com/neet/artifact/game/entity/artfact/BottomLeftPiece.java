@@ -29,14 +29,21 @@ public class BottomLeftPiece extends MapObject {
 		}
 	}
 	
-	public void update() {
-		x += dx;
-		y += dy;
-		animation.update();
-	}
-	
 	public void draw(Graphics2D g) {
 		super.draw(g);
+	}
+
+	@Override
+	public void reset() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void update(long delay) {
+		x += dx;
+		y += dy;
+		animation.update(delay);
 	}
 	
 }

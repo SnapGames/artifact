@@ -113,14 +113,28 @@ public abstract class LevelGameState extends GameState {
 		}
 
 		eventManager.process(this);
-		// play events
-		// if (eventStart)
-		// eventStart();
-		// if (eventDead)
-		// eventDead();
-		// if (eventFinish)
-		// eventFinish();
 
+		updateWelcomeTitle(delta);
+
+		// update player
+		player.update(delta);
+		if (player.getHealth() == 0 || player.gety() > tileMap.getHeight()) {
+			eventManager.activate("EventDead");
+			attributes.put("blockInput", true);
+		}
+		// updates
+		updateTileMap(delta);
+		updateEnemies(delta);
+		updateProjectiles(delta);
+		updateExplosions(delta);
+		updateTeleport(delta);
+
+	}
+
+	/**
+	 * @param delta
+	 */
+	private void updateWelcomeTitle(long delta) {
 		// move title and subtitle
 		if (title != null) {
 			title.update(delta);
@@ -132,21 +146,59 @@ public abstract class LevelGameState extends GameState {
 			if (subtitle.shouldRemove())
 				subtitle = null;
 		}
+	}
 
-		// update player
-		player.update(delta);
-		if (player.getHealth() == 0 || player.gety() > tileMap.getHeight()) {
-			eventManager.activate("EventDead");
-			attributes.put("blockInput", new Boolean(true));
-
-		}
-
-		// update tilemap
+	/**
+	 * @param delta
+	 */
+	private void updateTileMap(long delta) {
 		tileMap.setPosition(GamePanel.WIDTH / 2 - player.getx(),
 				GamePanel.HEIGHT / 2 - player.gety());
 		tileMap.update(delta);
 		tileMap.fixBounds();
+	}
 
+	/**
+	 * @param delta
+	 */
+	private void updateTeleport(long delta) {
+		// update teleport
+		teleport.update(delta);
+	}
+
+	/**
+	 * @param delta
+	 */
+	private void updateExplosions(long delta) {
+		// update explosions
+		for (int i = 0; i < explosions.size(); i++) {
+			explosions.get(i).update(delta);
+			if (explosions.get(i).shouldRemove()) {
+				explosions.remove(i);
+				i--;
+			}
+		}
+	}
+
+	/**
+	 * @param delta
+	 */
+	private void updateProjectiles(long delta) {
+		// update enemy projectiles
+		for (int i = 0; i < eprojectiles.size(); i++) {
+			EnemyProjectile ep = eprojectiles.get(i);
+			ep.update(delta);
+			if (ep.shouldRemove()) {
+				eprojectiles.remove(i);
+				i--;
+			}
+		}
+	}
+
+	/**
+	 * @param delta
+	 */
+	private void updateEnemies(long delta) {
 		// update enemies
 		for (int i = 0; i < enemies.size(); i++) {
 			Enemy e = enemies.get(i);
@@ -157,29 +209,6 @@ public abstract class LevelGameState extends GameState {
 				explosions.add(new Explosion(tileMap, e.getx(), e.gety()));
 			}
 		}
-
-		// update enemy projectiles
-		for (int i = 0; i < eprojectiles.size(); i++) {
-			EnemyProjectile ep = eprojectiles.get(i);
-			ep.update(delta);
-			if (ep.shouldRemove()) {
-				eprojectiles.remove(i);
-				i--;
-			}
-		}
-
-		// update explosions
-		for (int i = 0; i < explosions.size(); i++) {
-			explosions.get(i).update();
-			if (explosions.get(i).shouldRemove()) {
-				explosions.remove(i);
-				i--;
-			}
-		}
-
-		// update teleport
-		teleport.update();
-
 	}
 
 	/*
