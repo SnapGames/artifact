@@ -15,7 +15,9 @@ import com.neet.framework.state.GameStateManager;
 /**
  * 
  * 
- * @author ForeignGuyMike(https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ)
+ * @author 
+ *         ForeignGuyMike(https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ
+ *         )
  * @author Frédéric Delorme<frederic.delorme@web-context.com>(refactoring)
  *
  */
@@ -62,6 +64,12 @@ public class AcidState extends GameState {
 	public void handleInput() {
 		if (InputHandler.isPressed(InputHandler.KeyCode.ESCAPE))
 			gsm.setActiveState(ArtifactGameStateManager.MENUSTATE);
+	}
+
+	@Override
+	public void reset() {
+		// TODO Auto-generated method stub
+
 	}
 
 }

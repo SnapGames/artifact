@@ -34,7 +34,7 @@ public class OptionState extends GameState {
 	private Font font;
 	private Font font2;
 
-	Locale[] supportedLocales = {  Locale.ENGLISH,Locale.FRENCH };
+	Locale[] supportedLocales = { Locale.ENGLISH, Locale.FRENCH };
 
 	private String[] options = { Game.getMessage("options.language.english"),
 			Game.getMessage("options.language.french"),
@@ -98,8 +98,7 @@ public class OptionState extends GameState {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * com.neet.framework.state.GameState#draw(java.awt.Graphics2D)
+	 * @see com.neet.framework.state.GameState#draw(java.awt.Graphics2D)
 	 */
 	@Override
 	public void draw(Graphics2D g) {
@@ -182,6 +181,11 @@ public class OptionState extends GameState {
 				currentChoice++;
 			}
 		}
+
+	}
+
+	@Override
+	public void reset() {
 
 	}
 

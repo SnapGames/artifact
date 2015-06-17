@@ -14,7 +14,9 @@ import com.neet.framework.state.GameStateManager;
 /**
  * The Pause state for this game.
  * 
- * @author ForeignGuyMike(https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ)
+ * @author 
+ *         ForeignGuyMike(https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ
+ *         )
  * @author Frédéric Delorme<frederic.delorme@web-context.com>(refactoring)
  *
  */
@@ -62,9 +64,10 @@ public class PauseState extends GameState {
 		g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
 		g.setColor(Color.WHITE);
 		g.setFont(font);
-		//center pause sentence.
+		// center pause sentence.
 		Rectangle2D rect = g.getFontMetrics(font).getStringBounds(pause, g);
-		g.drawString(pause, (int)(GamePanel.WIDTH-rect.getWidth())/2, (int)(GamePanel.HEIGHT-rect.getHeight())/2);
+		g.drawString(pause, (int) (GamePanel.WIDTH - rect.getWidth()) / 2,
+				(int) (GamePanel.HEIGHT - rect.getHeight()) / 2);
 	}
 
 	/*
@@ -79,6 +82,11 @@ public class PauseState extends GameState {
 			gsm.setPaused(false);
 			gsm.setActiveState(ArtifactGameStateManager.MENUSTATE);
 		}
+	}
+
+	@Override
+	public void reset() {
+
 	}
 
 }

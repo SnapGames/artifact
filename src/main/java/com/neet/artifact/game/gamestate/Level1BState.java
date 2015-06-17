@@ -1,10 +1,7 @@
 package com.neet.artifact.game.gamestate;
 
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import java.util.ArrayList;
-
-import javax.imageio.ImageIO;
 
 import com.neet.artifact.game.entity.EnemyProjectile;
 import com.neet.artifact.game.entity.EnergyParticle;
@@ -17,6 +14,9 @@ import com.neet.artifact.game.entity.Title;
 import com.neet.artifact.game.entity.enemies.Gazer;
 import com.neet.artifact.game.entity.enemies.GelPop;
 import com.neet.artifact.game.entity.enemies.Tengu;
+import com.neet.artifact.game.events.EventDead;
+import com.neet.artifact.game.events.EventFinish;
+import com.neet.artifact.game.events.EventStart;
 import com.neet.framework.audio.JukeBox;
 import com.neet.framework.entity.Enemy;
 import com.neet.framework.gfx.Background;
@@ -27,7 +27,9 @@ import com.neet.framework.state.LevelGameState;
 /**
  * A second level to discover more things
  *
- * @author ForeignGuyMike(https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ)
+ * @author 
+ *         ForeignGuyMike(https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ
+ *         )
  * @author Frédéric Delorme<frederic.delorme@web-context.com>(refactoring)
  * 
  */
@@ -56,6 +58,17 @@ public class Level1BState extends LevelGameState {
 	/*
 	 * (non-Javadoc)
 	 * 
+	 * @see com.neet.framework.state.LevelGameState#registerEvents()
+	 */
+	public void registerEvents() {
+		eventManager.register(new EventStart());
+		eventManager.register(new EventDead());
+		eventManager.register(new EventFinish());
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.neet.artifact.gamestate.GameState#init()
 	 */
 	public void init() {
@@ -65,6 +78,7 @@ public class Level1BState extends LevelGameState {
 
 		// tilemap
 		tileMap = new TileMap(30);
+		tileMap.init();
 		tileMap.loadTiles("/Tilesets/ruinstileset.gif");
 		tileMap.loadMap("/Maps/level1b.map");
 		tileMap.setPosition(140, 0);
@@ -95,10 +109,6 @@ public class Level1BState extends LevelGameState {
 
 		// title and subtitle
 		try {
-			hageonText = ImageIO.read(getClass().getResourceAsStream(
-					"/HUD/HageonTemple.gif"));
-			title = new Title(hageonText.getSubimage(0, 0, 178, 20));
-			title.sety(60);
 			subtitle = new Title(hageonText.getSubimage(0, 33, 91, 13));
 			subtitle.sety(85);
 		} catch (Exception e) {
@@ -110,9 +120,8 @@ public class Level1BState extends LevelGameState {
 		teleport.setPosition(2850, 371);
 
 		// start event
-		eventStart = true;
-		tb = new ArrayList<Rectangle>();
-		eventStart();
+		eventManager.activate("EventStart");
+		eventManager.process(this);
 
 		// sfx
 		JukeBox.load("/SFX/teleport.mp3", "teleport");
@@ -197,6 +206,10 @@ public class Level1BState extends LevelGameState {
 		super.reset();
 		player.setPosition(300, 131);
 		tileMap.setShaking(false, 0);
+		title = new Title(hageonText.getSubimage(0, 0, 178, 20));
+		title.sety(60);
+		subtitle = new Title(hageonText.getSubimage(0, 33, 91, 13));
+		subtitle.sety(85);
 	}
 
 	/*
@@ -208,7 +221,8 @@ public class Level1BState extends LevelGameState {
 		super.update(delay);
 		// check if quake event should start
 		if (player.getx() > 2175 && !tileMap.isShaking()) {
-			eventQuake = blockInput = true;
+			eventQuake = true;
+			attributes.put("blockingState", true);
 		}
 
 		if (eventQuake)
@@ -250,8 +264,9 @@ public class Level1BState extends LevelGameState {
 			player.setEmote(Player.SURPRISED);
 		if (eventCount == 300) {
 			player.setEmote(Player.NONE);
-			eventQuake = blockInput = false;
-			eventCount = 0;
+			eventQuake = false;
+			attributes.put("blockingState", false);
+			eventManager.resetCount();
 		}
 	}
 
