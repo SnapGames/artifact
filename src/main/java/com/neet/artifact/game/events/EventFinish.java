@@ -11,7 +11,6 @@ import com.neet.artifact.game.entity.PlayerSave;
 import com.neet.framework.GamePanel;
 import com.neet.framework.audio.JukeBox;
 import com.neet.framework.event.Event;
-import com.neet.framework.event.Event.EventStatus;
 import com.neet.framework.state.GameState;
 
 /**
@@ -61,7 +60,7 @@ public class EventFinish extends Event {
 			PlayerSave.setHealth(player.getHealth());
 			PlayerSave.setLives(player.getLives());
 			PlayerSave.setTime(player.getTime());
-			this.status=EventStatus.DONE;
+			this.status = EventStatus.DONE;
 			state.getGsm().setActiveState(state.nextState());
 		}
 

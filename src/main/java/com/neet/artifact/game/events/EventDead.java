@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import com.neet.artifact.game.entity.Player;
 import com.neet.artifact.game.gamestate.ArtifactGameStateManager;
 import com.neet.framework.GamePanel;
+import com.neet.framework.audio.JukeBox;
 import com.neet.framework.event.Event;
 import com.neet.framework.state.GameState;
 
@@ -47,15 +48,18 @@ public class EventDead extends Event {
 			tb.get(0).height += 8;
 		}
 		if (eventCount >= 120) {
-			if (player.getLives() == 0) {
+			if (player.getLives() <= 0) {
 				this.status=EventStatus.DONE;
-				state.getGsm().setActiveState(ArtifactGameStateManager.MENUSTATE);
+				if(state.containsAttribute("music.clip")){
+					JukeBox.stop((String)state.getAttribute("music.clip"));
+				}
+				state.getGsm().setActiveState(ArtifactGameStateManager.ACIDSTATE);
 			} else {
 				state.setAttribute("blockInput", false);
 				eventManager.resetCount();
 				player.loseLife();
-				state.reset();
 				this.status=EventStatus.DONE;
+				state.reset();
 			}
 		}
 	}

@@ -76,6 +76,15 @@ public abstract class GameState {
 	}
 
 	/**
+	 * Return Game State Manager.
+	 * 
+	 * @return
+	 */
+	public GameStateManager getGsm() {
+		return gsm;
+	}
+
+	/**
 	 * If needed return the next Level.
 	 * 
 	 * @return
@@ -104,8 +113,15 @@ public abstract class GameState {
 		attributes.put(name, value);
 	}
 
-	public GameStateManager getGsm() {
-		return gsm;
+	/**
+	 * Is <code>name</code>'s attribute exists in attributes list ?
+	 * 
+	 * @param name
+	 *            name of the attribute to search for.
+	 * @return true if attribute exists.
+	 */
+	public boolean containsAttribute(String name) {
+		return attributes.containsKey(name);
 	}
 
 }

@@ -78,10 +78,10 @@ public class InputHandler {
 		case KeyEvent.VK_W:
 			keyState[KeyCode.BUTTON1.code()] = b;
 			break;
-		case KeyEvent.VK_E:
+		case KeyEvent.VK_X:
 			keyState[KeyCode.BUTTON2.code()] = b;
 			break;
-		case KeyEvent.VK_R:
+		case KeyEvent.VK_C:
 			keyState[KeyCode.BUTTON3.code()] = b;
 			break;
 		case KeyEvent.VK_F:

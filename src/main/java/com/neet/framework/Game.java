@@ -8,23 +8,35 @@ import javax.swing.JFrame;
 /**
  * Game The game !
  * 
- * @author ForeignGuyMike<https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ>
+ * @author 
+ *         ForeignGuyMike<https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ
+ *         >
  * @author Frédéric Delorme<frederic.delorme@web-context.com>(refactoring)
  * 
  * @see https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ
  */
 public class Game {
 
+	/**
+	 * Translated i18n strings
+	 */
 	private static ResourceBundle props;
-
-	static {
-		props = ResourceBundle.getBundle("game", Locale.ENGLISH);
-	}
+	/**
+	 * Supported languages
+	 */
+	private Locale[] supportedLocales;
+	/**
+	 * current activated language.
+	 */
+	private Locale locale;
 
 	/**
 	 * Load properties file.
 	 */
 	public Game() {
+		supportedLocales = Locale.getAvailableLocales();
+		locale = Locale.getDefault();
+		props = ResourceBundle.getBundle("game", locale);
 	}
 
 	/**
@@ -47,9 +59,10 @@ public class Game {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-
+		Game game = new Game();
 		JFrame window = new JFrame(String.format("%s - %s (%s)",
-				Game.getMessage("app.title"), Game.getMessage("app.version"),
+				Game.getMessage("app.title"), 
+				Game.getMessage("app.version"),
 				Game.getMessage("app.createdAt")));
 
 		window.add(new GamePanel());

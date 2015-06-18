@@ -143,7 +143,7 @@ public class Level1AState extends LevelGameState {
 		// music
 		JukeBox.load("/Music/level1.mp3", "level1");
 		JukeBox.loop("level1", 600, JukeBox.getFrames("level1") - 2200);
-
+		attributes.put("music.clip", "level1");
 	}
 
 	/*

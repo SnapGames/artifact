@@ -68,8 +68,6 @@ public class AcidState extends GameState {
 
 	@Override
 	public void reset() {
-		// TODO Auto-generated method stub
-
 	}
 
 }
