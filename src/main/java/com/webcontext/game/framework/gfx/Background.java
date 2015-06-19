@@ -1,12 +1,12 @@
-package com.neet.framework.gfx;
+package com.webcontext.game.framework.gfx;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 
-import com.neet.framework.GamePanel;
-import com.neet.framework.entity.GameObject;
+import com.webcontext.game.framework.GamePanel;
+import com.webcontext.game.framework.entity.GameObject;
 
 public class Background implements GameObject {
 

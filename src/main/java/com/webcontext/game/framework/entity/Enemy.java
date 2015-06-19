@@ -1,7 +1,7 @@
-package com.neet.framework.entity;
+package com.webcontext.game.framework.entity;
 
-import com.neet.framework.audio.JukeBox;
-import com.neet.framework.gfx.tilemap.TileMap;
+import com.webcontext.game.framework.audio.JukeBox;
+import com.webcontext.game.framework.gfx.tilemap.TileMap;
 /**
  * Default generic enemy object.
  * 

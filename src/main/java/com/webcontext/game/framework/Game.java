@@ -1,4 +1,4 @@
-package com.neet.framework;
+package com.webcontext.game.framework;
 
 import java.util.Locale;
 import java.util.ResourceBundle;

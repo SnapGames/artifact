@@ -1,4 +1,4 @@
-package com.neet.framework.state;
+package com.webcontext.game.framework.state;
 
 import java.awt.Graphics2D;
 import java.lang.reflect.Constructor;
@@ -6,8 +6,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.neet.framework.GamePanel;
-import com.neet.framework.audio.JukeBox;
+import com.webcontext.game.framework.GamePanel;
+import com.webcontext.game.framework.audio.JukeBox;
 
 public class GameStateManager implements GSM {
 

@@ -1,4 +1,4 @@
-package com.neet.framework.entity;
+package com.webcontext.game.framework.entity;
 
 import java.awt.image.BufferedImage;
 

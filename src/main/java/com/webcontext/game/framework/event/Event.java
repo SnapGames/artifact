@@ -1,11 +1,11 @@
 /**
  * 
  */
-package com.neet.framework.event;
+package com.webcontext.game.framework.event;
 
 import java.awt.Graphics2D;
 
-import com.neet.framework.state.GameState;
+import com.webcontext.game.framework.state.GameState;
 
 /**
  * An Event used in GameState.

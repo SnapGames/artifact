@@ -1,4 +1,4 @@
-package com.neet.framework.state;
+package com.webcontext.game.framework.state;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -12,11 +12,11 @@ import com.neet.artifact.game.entity.HUD;
 import com.neet.artifact.game.entity.Player;
 import com.neet.artifact.game.entity.Teleport;
 import com.neet.artifact.game.entity.Title;
-import com.neet.framework.GamePanel;
-import com.neet.framework.entity.Enemy;
-import com.neet.framework.event.EventManager;
-import com.neet.framework.gfx.tilemap.TileMap;
-import com.neet.framework.handler.InputHandler;
+import com.webcontext.game.framework.GamePanel;
+import com.webcontext.game.framework.entity.Enemy;
+import com.webcontext.game.framework.event.EventManager;
+import com.webcontext.game.framework.gfx.tilemap.TileMap;
+import com.webcontext.game.framework.handler.InputHandler;
 
 /**
  * The inherited default class for all Level for this game, implementing basic

@@ -1,4 +1,4 @@
-package com.neet.framework.gfx.tilemap;
+package com.webcontext.game.framework.gfx.tilemap;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -8,8 +8,8 @@ import java.io.InputStreamReader;
 
 import javax.imageio.ImageIO;
 
-import com.neet.framework.GamePanel;
-import com.neet.framework.entity.GameObject;
+import com.webcontext.game.framework.GamePanel;
+import com.webcontext.game.framework.entity.GameObject;
 
 /**
  * TileMap graphical object to render all background graphics based on simple

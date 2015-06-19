@@ -4,9 +4,9 @@
 package com.neet.artifact.game.events;
 
 import com.neet.artifact.game.entity.Player;
-import com.neet.framework.event.Event;
-import com.neet.framework.gfx.tilemap.TileMap;
-import com.neet.framework.state.GameState;
+import com.webcontext.game.framework.event.Event;
+import com.webcontext.game.framework.gfx.tilemap.TileMap;
+import com.webcontext.game.framework.state.GameState;
 
 /**
  * @author frederic

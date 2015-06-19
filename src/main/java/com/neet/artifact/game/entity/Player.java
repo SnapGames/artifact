@@ -7,11 +7,11 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
-import com.neet.framework.audio.JukeBox;
-import com.neet.framework.entity.Enemy;
-import com.neet.framework.entity.GameObject;
-import com.neet.framework.entity.MapObject;
-import com.neet.framework.gfx.tilemap.TileMap;
+import com.webcontext.game.framework.audio.JukeBox;
+import com.webcontext.game.framework.entity.Enemy;
+import com.webcontext.game.framework.entity.GameObject;
+import com.webcontext.game.framework.entity.MapObject;
+import com.webcontext.game.framework.gfx.tilemap.TileMap;
 
 /**
  * Player is the Main MapObject managed by the user.

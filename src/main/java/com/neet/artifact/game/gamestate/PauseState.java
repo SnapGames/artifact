@@ -5,11 +5,11 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 
-import com.neet.framework.Game;
-import com.neet.framework.GamePanel;
-import com.neet.framework.handler.InputHandler;
-import com.neet.framework.state.GameState;
-import com.neet.framework.state.GameStateManager;
+import com.webcontext.game.framework.Game;
+import com.webcontext.game.framework.GamePanel;
+import com.webcontext.game.framework.handler.InputHandler;
+import com.webcontext.game.framework.state.GameState;
+import com.webcontext.game.framework.state.GameStateManager;
 
 /**
  * The Pause state for this game.

@@ -8,9 +8,9 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 
 import com.neet.artifact.game.entity.Title;
-import com.neet.framework.GamePanel;
-import com.neet.framework.event.Event;
-import com.neet.framework.state.GameState;
+import com.webcontext.game.framework.GamePanel;
+import com.webcontext.game.framework.event.Event;
+import com.webcontext.game.framework.state.GameState;
 
 /**
  * Start event processing Title and subtitle display.

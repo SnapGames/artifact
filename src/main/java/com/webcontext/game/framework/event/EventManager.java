@@ -1,15 +1,15 @@
 /**
  * 
  */
-package com.neet.framework.event;
+package com.webcontext.game.framework.event;
 
 import java.awt.Graphics2D;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import com.neet.framework.event.Event.EventStatus;
-import com.neet.framework.state.GameState;
+import com.webcontext.game.framework.event.Event.EventStatus;
+import com.webcontext.game.framework.state.GameState;
 
 /**
  * @author frederic

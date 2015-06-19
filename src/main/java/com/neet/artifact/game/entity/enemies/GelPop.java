@@ -4,10 +4,10 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import com.neet.artifact.game.entity.Player;
-import com.neet.framework.GamePanel;
-import com.neet.framework.entity.Enemy;
-import com.neet.framework.gfx.tilemap.TileMap;
-import com.neet.framework.handler.Content;
+import com.webcontext.game.framework.GamePanel;
+import com.webcontext.game.framework.entity.Enemy;
+import com.webcontext.game.framework.gfx.tilemap.TileMap;
+import com.webcontext.game.framework.handler.Content;
 
 /**
  * GelPop Enemy.

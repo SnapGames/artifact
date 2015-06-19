@@ -8,12 +8,12 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
 import com.neet.artifact.game.entity.PlayerSave;
-import com.neet.framework.Game;
-import com.neet.framework.GamePanel;
-import com.neet.framework.audio.JukeBox;
-import com.neet.framework.handler.InputHandler;
-import com.neet.framework.state.GameState;
-import com.neet.framework.state.GameStateManager;
+import com.webcontext.game.framework.Game;
+import com.webcontext.game.framework.GamePanel;
+import com.webcontext.game.framework.audio.JukeBox;
+import com.webcontext.game.framework.handler.InputHandler;
+import com.webcontext.game.framework.state.GameState;
+import com.webcontext.game.framework.state.GameStateManager;
 
 /**
  * The Menu for the game.

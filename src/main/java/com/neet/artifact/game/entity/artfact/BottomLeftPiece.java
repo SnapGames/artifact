@@ -5,8 +5,8 @@ import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 
-import com.neet.framework.entity.MapObject;
-import com.neet.framework.gfx.tilemap.TileMap;
+import com.webcontext.game.framework.entity.MapObject;
+import com.webcontext.game.framework.gfx.tilemap.TileMap;
 
 public class BottomLeftPiece extends MapObject {
 	

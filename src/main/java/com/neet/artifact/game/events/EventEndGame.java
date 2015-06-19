@@ -8,10 +8,10 @@ import java.util.ArrayList;
 
 import com.neet.artifact.game.entity.Player;
 import com.neet.artifact.game.entity.PlayerSave;
-import com.neet.framework.GamePanel;
-import com.neet.framework.event.Event;
-import com.neet.framework.event.Event.EventStatus;
-import com.neet.framework.state.GameState;
+import com.webcontext.game.framework.GamePanel;
+import com.webcontext.game.framework.event.Event;
+import com.webcontext.game.framework.event.Event.EventStatus;
+import com.webcontext.game.framework.state.GameState;
 
 /**
  * Event raised at end of game.

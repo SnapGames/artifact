@@ -1,4 +1,4 @@
-package com.neet.framework;
+package com.webcontext.game.framework;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -12,8 +12,8 @@ import java.io.File;
 import javax.swing.JPanel;
 
 import com.neet.artifact.game.gamestate.ArtifactGameStateManager;
-import com.neet.framework.handler.InputHandler;
-import com.neet.framework.state.GSM;
+import com.webcontext.game.framework.handler.InputHandler;
+import com.webcontext.game.framework.state.GSM;
 
 /**
  * Game Panel implementation.

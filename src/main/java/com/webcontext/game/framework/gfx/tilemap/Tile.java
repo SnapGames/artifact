@@ -1,4 +1,4 @@
-package com.neet.framework.gfx.tilemap;
+package com.webcontext.game.framework.gfx.tilemap;
 
 import java.awt.image.BufferedImage;
 

@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 
-import com.neet.framework.entity.GameObject;
+import com.webcontext.game.framework.entity.GameObject;
 
 public class HUD  implements GameObject{
 	

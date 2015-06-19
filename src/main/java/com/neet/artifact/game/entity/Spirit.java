@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 import com.neet.artifact.game.entity.enemies.DarkEnergy;
-import com.neet.framework.entity.Enemy;
-import com.neet.framework.gfx.tilemap.TileMap;
+import com.webcontext.game.framework.entity.Enemy;
+import com.webcontext.game.framework.gfx.tilemap.TileMap;
 
 public class Spirit extends Enemy {
 

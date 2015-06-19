@@ -4,9 +4,9 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 
-import com.neet.framework.entity.MapObject;
-import com.neet.framework.gfx.tilemap.TileMap;
-import com.neet.framework.handler.Content;
+import com.webcontext.game.framework.entity.MapObject;
+import com.webcontext.game.framework.gfx.tilemap.TileMap;
+import com.webcontext.game.framework.handler.Content;
 
 public class Explosion extends MapObject {
 	

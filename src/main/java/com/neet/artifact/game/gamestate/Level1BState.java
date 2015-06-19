@@ -17,12 +17,12 @@ import com.neet.artifact.game.entity.enemies.Tengu;
 import com.neet.artifact.game.events.EventDead;
 import com.neet.artifact.game.events.EventFinish;
 import com.neet.artifact.game.events.EventStart;
-import com.neet.framework.audio.JukeBox;
-import com.neet.framework.entity.Enemy;
-import com.neet.framework.gfx.Background;
-import com.neet.framework.gfx.tilemap.TileMap;
-import com.neet.framework.state.GameStateManager;
-import com.neet.framework.state.LevelGameState;
+import com.webcontext.game.framework.audio.JukeBox;
+import com.webcontext.game.framework.entity.Enemy;
+import com.webcontext.game.framework.gfx.Background;
+import com.webcontext.game.framework.gfx.tilemap.TileMap;
+import com.webcontext.game.framework.state.GameStateManager;
+import com.webcontext.game.framework.state.LevelGameState;
 
 /**
  * A second level to discover more things

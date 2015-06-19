@@ -1,10 +1,10 @@
-package com.neet.framework.state;
+package com.webcontext.game.framework.state;
 
 import java.awt.Graphics2D;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.neet.framework.entity.GameObject;
+import com.webcontext.game.framework.entity.GameObject;
 
 /**
  * The abstract class to not forgot to implements needed things.

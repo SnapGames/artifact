@@ -5,8 +5,8 @@ import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 
-import com.neet.framework.GamePanel;
-import com.neet.framework.entity.GameObject;
+import com.webcontext.game.framework.GamePanel;
+import com.webcontext.game.framework.entity.GameObject;
 
 /**
  * Title object to be displayed on some GameState
