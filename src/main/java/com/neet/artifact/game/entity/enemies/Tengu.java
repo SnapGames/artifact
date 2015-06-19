@@ -5,9 +5,9 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import com.neet.artifact.game.entity.Player;
-import com.neet.artifact.game.resources.ContentManager;
 import com.webcontext.game.framework.entity.Enemy;
 import com.webcontext.game.framework.gfx.tilemap.TileMap;
+import com.webcontext.game.framework.resources.ContentManager;
 
 /**
  * Tengu game object.

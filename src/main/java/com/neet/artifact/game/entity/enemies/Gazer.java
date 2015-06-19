@@ -3,9 +3,9 @@ package com.neet.artifact.game.entity.enemies;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
-import com.neet.artifact.game.resources.ContentManager;
 import com.webcontext.game.framework.entity.Enemy;
 import com.webcontext.game.framework.gfx.tilemap.TileMap;
+import com.webcontext.game.framework.resources.ContentManager;
 
 /**
  * Gaze enemy.

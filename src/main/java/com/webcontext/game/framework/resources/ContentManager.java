@@ -1,4 +1,4 @@
-package com.neet.artifact.game.resources;
+package com.webcontext.game.framework.resources;
 
 import java.awt.image.BufferedImage;
 import java.util.HashMap;

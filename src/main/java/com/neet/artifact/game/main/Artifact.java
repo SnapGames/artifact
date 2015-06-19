@@ -3,9 +3,9 @@
  */
 package com.neet.artifact.game.main;
 
-import com.neet.artifact.game.resources.ContentManager;
 import com.webcontext.game.framework.Game;
 import com.webcontext.game.framework.GamePanel;
+import com.webcontext.game.framework.resources.ContentManager;
 
 /**
  * @author frederic
