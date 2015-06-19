@@ -3,9 +3,9 @@ package com.neet.artifact.game.entity.enemies;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+import com.neet.artifact.game.resources.ContentManager;
 import com.webcontext.game.framework.entity.Enemy;
 import com.webcontext.game.framework.gfx.tilemap.TileMap;
-import com.webcontext.game.framework.handler.Content;
 
 /**
  * Dark Energy enemy object
@@ -43,8 +43,8 @@ public class DarkEnergy extends Enemy {
 		damage = 1;
 		moveSpeed = 5;
 
-		startSprites = Content.DarkEnergy[0];
-		sprites = Content.DarkEnergy[1];
+		startSprites = ContentManager.getImageBank("DarkEnergy")[0];
+		sprites = ContentManager.getImageBank("DarkEnergy")[1];
 
 		animation.setFrames(startSprites);
 		animation.setDelay(2);

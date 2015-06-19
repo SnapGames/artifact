@@ -3,9 +3,9 @@ package com.neet.artifact.game.entity;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+import com.neet.artifact.game.resources.ContentManager;
 import com.webcontext.game.framework.entity.MapObject;
 import com.webcontext.game.framework.gfx.tilemap.TileMap;
-import com.webcontext.game.framework.handler.Content;
 
 public class EnergyParticle extends MapObject {
 	
@@ -43,7 +43,7 @@ public class EnergyParticle extends MapObject {
 		}
 		
 		count = 0;
-		sprites = Content.EnergyParticle[0];
+		sprites = ContentManager.getImageBank("EnergyParticle")[0];
 		animation.setFrames(sprites);
 		animation.setDelay(-1);
 	}

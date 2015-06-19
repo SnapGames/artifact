@@ -3,9 +3,9 @@ package com.neet.artifact.game.entity.enemies;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+import com.neet.artifact.game.resources.ContentManager;
 import com.webcontext.game.framework.entity.Enemy;
 import com.webcontext.game.framework.gfx.tilemap.TileMap;
-import com.webcontext.game.framework.handler.Content;
 
 /**
  * Gaze enemy.
@@ -36,7 +36,7 @@ public class Gazer extends Enemy {
 		damage = 1;
 		moveSpeed = 5;
 
-		idleSprites = Content.Gazer[0];
+		idleSprites = ContentManager.getImageBank("Gazer")[0];
 
 		animation.setFrames(idleSprites);
 		animation.setDelay(4);

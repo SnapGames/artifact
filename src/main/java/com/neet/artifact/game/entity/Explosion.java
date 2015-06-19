@@ -4,9 +4,9 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 
+import com.neet.artifact.game.resources.ContentManager;
 import com.webcontext.game.framework.entity.MapObject;
 import com.webcontext.game.framework.gfx.tilemap.TileMap;
-import com.webcontext.game.framework.handler.Content;
 
 public class Explosion extends MapObject {
 	
@@ -31,7 +31,7 @@ public class Explosion extends MapObject {
 		speed = 2;
 		diagSpeed = 1.41;
 		
-		sprites = Content.Explosion[0];
+		sprites = ContentManager.getImageBank("Explosion")[0];
 		
 		animation.setFrames(sprites);
 		animation.setDelay(6);

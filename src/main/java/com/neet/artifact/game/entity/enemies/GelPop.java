@@ -4,10 +4,10 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import com.neet.artifact.game.entity.Player;
+import com.neet.artifact.game.resources.ContentManager;
 import com.webcontext.game.framework.GamePanel;
 import com.webcontext.game.framework.entity.Enemy;
 import com.webcontext.game.framework.gfx.tilemap.TileMap;
-import com.webcontext.game.framework.handler.Content;
 
 /**
  * GelPop Enemy.
@@ -46,7 +46,7 @@ public class GelPop extends Enemy {
 		maxFallSpeed = 4.0;
 		jumpStart = -5;
 
-		sprites = Content.GelPop[0];
+		sprites = ContentManager.getImageBank("GelPop")[0];
 
 		animation.setFrames(sprites);
 		animation.setDelay(4);

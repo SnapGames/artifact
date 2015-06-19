@@ -5,9 +5,9 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import com.neet.artifact.game.entity.Player;
+import com.neet.artifact.game.resources.ContentManager;
 import com.webcontext.game.framework.entity.Enemy;
 import com.webcontext.game.framework.gfx.tilemap.TileMap;
-import com.webcontext.game.framework.handler.Content;
 
 /**
  * Tengu game object.
@@ -54,9 +54,9 @@ public class Tengu extends Enemy {
 		maxFallSpeed = 4.0;
 		jumpStart = -5;
 
-		idleSprites = Content.Tengu[0];
-		jumpSprites = Content.Tengu[1];
-		attackSprites = Content.Tengu[2];
+		idleSprites = ContentManager.getImageBank("Tengu")[0];
+		jumpSprites = ContentManager.getImageBank("Tengu")[1];
+		attackSprites = ContentManager.getImageBank("Tengu")[2];
 
 		animation.setFrames(idleSprites);
 		animation.setDelay(-1);
