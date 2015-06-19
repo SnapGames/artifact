@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 
 import com.neet.artifact.game.gamestate.ArtifactGameStateManager;
 import com.neet.framework.handler.InputHandler;
-import com.neet.framework.state.GameStateManager;
+import com.neet.framework.state.GSM;
 
 /**
  * Game Panel implementation.
@@ -38,19 +38,26 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 	private int FPS = 60;
 	private long targetTime = 1000 / FPS;
 
-	private long startTime = 0, endTime = 0, deltaTime = 0;
-
 	// image
 	private BufferedImage image;
 	private Graphics2D g;
 
 	// game state manager
-	private GameStateManager gsm;
+	protected GSM gsm;
 
-	// other
+	/**
+	 * Record generated image to timeline screenshot.
+	 */
 	private boolean recording = false;
 	private int recordingCount = 0;
-	private boolean screenshot;
+	/**
+	 * take a screen shot of the game.
+	 */
+	private boolean screenShot;
+	/**
+	 * TODO Switch to full screen mode.
+	 */
+	private boolean fullScreen;
 
 	/**
 	 * Default constructor for this Game. Initialize object size.
@@ -80,7 +87,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 	/**
 	 * Initialize the game.
 	 */
-	private void init() {
+	public void init() {
 
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 		g = (Graphics2D) image.getGraphics();
@@ -149,8 +156,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		Graphics g2 = getGraphics();
 		g2.drawImage(image, 0, 0, WIDTH * SCALE, HEIGHT * SCALE, null);
 		g2.dispose();
-		if (screenshot) {
-			screenshot = false;
+		if (screenShot) {
+			screenShot = false;
 			try {
 				java.io.File out = new java.io.File("screenshot "
 						+ System.nanoTime() + ".gif");
@@ -190,7 +197,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 				return;
 			}
 			if (key.getKeyCode() == KeyEvent.VK_S) {
-				screenshot = true;
+				screenShot = true;
 				return;
 			}
 		}

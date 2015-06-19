@@ -80,7 +80,7 @@ public abstract class GameState {
 	 * 
 	 * @return
 	 */
-	public GameStateManager getGsm() {
+	public GSM getGsm() {
 		return gsm;
 	}
 

@@ -6,11 +6,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.neet.artifact.game.gamestate.PauseState;
 import com.neet.framework.GamePanel;
 import com.neet.framework.audio.JukeBox;
 
-public class GameStateManager {
+public class GameStateManager implements GSM {
 
 	/**
 	 * Array of all possible game states.
@@ -23,12 +22,12 @@ public class GameStateManager {
 	/**
 	 * The Pause State (when player push pause button.
 	 */
-	protected PauseState pauseState;
+	protected GameState pauseState;
 	/**
 	 * Pause state engaged ?
 	 */
 	protected boolean paused;
-	private Map<String, GameState> activeStates = new HashMap<String,GameState>();
+	private Map<String, GameState> activeStates = new HashMap<String, GameState>();
 
 	public GameStateManager() {
 		JukeBox.init();
@@ -46,12 +45,15 @@ public class GameStateManager {
 			currentState = state;
 			try {
 				// Constructor for the level.
-				Constructor<?> activeStateCst = stateClass.getDeclaredConstructor(new Class[] { GameStateManager.class });
+				Constructor<?> activeStateCst = stateClass
+						.getDeclaredConstructor(new Class[] { GameStateManager.class });
 				// instances the GameSate, and store to cache..
-				activeStates.put(state, (GameState) activeStateCst.newInstance(new Object[] { this }));
-				
+				activeStates.put(state, (GameState) activeStateCst
+						.newInstance(new Object[] { this }));
+
 			} catch (InstantiationException | IllegalAccessException
-					| IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+					| IllegalArgumentException | InvocationTargetException
+					| NoSuchMethodException | SecurityException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -68,37 +70,46 @@ public class GameStateManager {
 		activeStates.remove(state);
 	}
 
-	/**
-	 * set active State.
+	/*
+	 * (non-Javadoc)
 	 * 
-	 * @param state
+	 * @see com.neet.framework.state.GSM#setActiveState(java.lang.String)
 	 */
 	public void setActiveState(String state) {
-		unloadState(currentState);
-		currentState = state;
-		loadState(currentState);
+		if (gameStates.containsKey(currentState)) {
+			unloadState(currentState);
+			currentState = state;
+			loadState(currentState);
+		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.neet.framework.state.GSM#setPaused(boolean)
+	 */
 	public void setPaused(boolean b) {
 		paused = b;
 	}
 
-	/**
-	 * Update current active State
-	 * @param delay
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.neet.framework.state.GSM#update(long)
 	 */
 	public void update(long delay) {
 		if (paused) {
 			pauseState.update(delay);
 			return;
 		}
-		if (activeStates.containsKey(currentState))
-			activeStates.get(currentState).update(delay);
+		// if (activeStates.containsKey(currentState))
+		activeStates.get(currentState).update(delay);
 	}
 
-	/**
-	 * draw Current state.
-	 * @param g
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.neet.framework.state.GSM#draw(java.awt.Graphics2D)
 	 */
 	public void draw(Graphics2D g) {
 		if (paused) {

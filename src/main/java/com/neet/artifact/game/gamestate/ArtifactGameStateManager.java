@@ -1,6 +1,7 @@
 package com.neet.artifact.game.gamestate;
 
 import com.neet.framework.audio.JukeBox;
+import com.neet.framework.state.GSM;
 import com.neet.framework.state.GameStateManager;
 
 /**
@@ -13,7 +14,7 @@ import com.neet.framework.state.GameStateManager;
  * @author Frédéric Delorme<frederic.delorme@web-context.com>(refactoring)
  *
  */
-public class ArtifactGameStateManager extends GameStateManager {
+public class ArtifactGameStateManager extends GameStateManager implements GSM {
 
 	/**
 	 * All games states index.
@@ -32,13 +33,13 @@ public class ArtifactGameStateManager extends GameStateManager {
 	 */
 	public ArtifactGameStateManager() {
 
-		gameStates.put(MENUSTATE,MenuState.class);
-		gameStates.put(PAUSESTATE,PauseState.class);
-		gameStates.put(OPTIONSTATE,OptionState.class);
-		gameStates.put(ACIDSTATE,AcidState.class);
-		gameStates.put(LEVEL1ASTATE,Level1AState.class);
-		gameStates.put(LEVEL1BSTATE,Level1BState.class);
-		gameStates.put(LEVEL1CSTATE,Level1CState.class);
+		gameStates.put(MENUSTATE, MenuState.class);
+		gameStates.put(PAUSESTATE, PauseState.class);
+		gameStates.put(OPTIONSTATE, OptionState.class);
+		gameStates.put(ACIDSTATE, AcidState.class);
+		gameStates.put(LEVEL1ASTATE, Level1AState.class);
+		gameStates.put(LEVEL1BSTATE, Level1BState.class);
+		gameStates.put(LEVEL1CSTATE, Level1CState.class);
 
 		pauseState = new PauseState(this);
 		paused = false;

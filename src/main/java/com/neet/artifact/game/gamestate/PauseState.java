@@ -58,7 +58,9 @@ public class PauseState extends GameState {
 	 */
 	public void draw(Graphics2D g) {
 		// retrieve translated sentence.
-		String pause = Game.getMessage("pause.main");
+		String pause = Game.getMessage("pause.main.title");
+		String exit = Game.getMessage("pause.item.exit");
+		String back= Game.getMessage("pause.item.back");
 		// prepare font
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
@@ -68,6 +70,15 @@ public class PauseState extends GameState {
 		Rectangle2D rect = g.getFontMetrics(font).getStringBounds(pause, g);
 		g.drawString(pause, (int) (GamePanel.WIDTH - rect.getWidth()) / 2,
 				(int) (GamePanel.HEIGHT - rect.getHeight()) / 2);
+		
+		Rectangle2D rect2 = g.getFontMetrics(font).getStringBounds(exit, g);
+		g.drawString(exit, (int) (GamePanel.WIDTH - rect2.getWidth()) / 2,
+				(int) ((GamePanel.HEIGHT - rect2.getHeight()) / 2) + 36);
+
+		Rectangle2D rect3 = g.getFontMetrics(font).getStringBounds(back, g);
+		g.drawString(back, (int) (GamePanel.WIDTH - rect3.getWidth()) / 2,
+				(int) ((GamePanel.HEIGHT - rect3.getHeight()) / 2) + 60);
+		
 	}
 
 	/*

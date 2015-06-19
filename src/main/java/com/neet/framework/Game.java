@@ -15,7 +15,7 @@ import javax.swing.JFrame;
  * 
  * @see https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ
  */
-public class Game {
+public abstract class Game {
 
 	/**
 	 * Translated i18n strings
@@ -53,24 +53,23 @@ public class Game {
 		props = ResourceBundle.getBundle("game", locale);
 	}
 
+
 	/**
-	 * Main method to launch game.
-	 * 
-	 * @param args
+	 * @param game
 	 */
-	public static void main(String[] args) {
-		Game game = new Game();
+	protected void start() {
 		JFrame window = new JFrame(String.format("%s - %s (%s)",
-				Game.getMessage("app.title"), 
-				Game.getMessage("app.version"),
+				Game.getMessage("app.title"), Game.getMessage("app.version"),
 				Game.getMessage("app.createdAt")));
 
-		window.add(new GamePanel());
+		window.add(this.create());
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setResizable(false);
 		window.pack();
 		window.setLocationRelativeTo(null);
 		window.setVisible(true);
 	}
+
+	public abstract GamePanel create();
 
 }
