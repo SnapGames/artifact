@@ -15,14 +15,14 @@ import com.webcontext.game.framework.Game;
 import com.webcontext.game.framework.GamePanel;
 import com.webcontext.game.framework.audio.JukeBox;
 import com.webcontext.game.framework.handler.InputHandler;
-import com.webcontext.game.framework.state.GameState;
-import com.webcontext.game.framework.state.GameStateManager;
+import com.webcontext.game.framework.state.impl.GameStateManager;
+import com.webcontext.game.framework.state.impl.GenericGameState;
 
 /**
  * @author frederic
  *
  */
-public class OptionState extends GameState {
+public class OptionState extends GenericGameState {
 
 	private BufferedImage head;
 

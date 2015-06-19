@@ -8,8 +8,8 @@ import java.awt.geom.Rectangle2D;
 import com.webcontext.game.framework.Game;
 import com.webcontext.game.framework.GamePanel;
 import com.webcontext.game.framework.handler.InputHandler;
-import com.webcontext.game.framework.state.GameState;
-import com.webcontext.game.framework.state.GameStateManager;
+import com.webcontext.game.framework.state.impl.GameStateManager;
+import com.webcontext.game.framework.state.impl.GenericGameState;
 
 /**
  * The Pause state for this game.
@@ -20,7 +20,7 @@ import com.webcontext.game.framework.state.GameStateManager;
  * @author Frédéric Delorme<frederic.delorme@web-context.com>(refactoring)
  *
  */
-public class PauseState extends GameState {
+public class PauseState extends GenericGameState {
 
 	private Font font;
 

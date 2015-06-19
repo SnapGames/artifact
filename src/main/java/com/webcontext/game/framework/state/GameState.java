@@ -1,47 +1,10 @@
 package com.webcontext.game.framework.state;
 
 import java.awt.Graphics2D;
-import java.util.HashMap;
-import java.util.Map;
 
 import com.webcontext.game.framework.entity.GameObject;
 
-/**
- * The abstract class to not forgot to implements needed things.
- * 
- * @author 
- *         ForeignGuyMike(https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ
- *         )
- * @author Frédéric Delorme<frederic.delorme@web-context.com>(refactoring)
- *
- */
-public abstract class GameState {
-
-	/**
-	 * Objects managed on this level.
-	 */
-	protected Map<String, GameObject> gameObjects;
-
-	/**
-	 * Internal GameState attributes.
-	 */
-	protected Map<String, Object> attributes;
-
-	/**
-	 * Internal Game State Manager reference.
-	 */
-	protected GameStateManager gsm;
-
-	/**
-	 * default constructor.
-	 * 
-	 * @param gsm
-	 */
-	public GameState(GameStateManager gsm) {
-		this.gsm = gsm;
-		gameObjects = new HashMap<>();
-		attributes = new HashMap<>();
-	}
+public interface GameState {
 
 	/**
 	 * Initializing the GameState.
@@ -71,27 +34,21 @@ public abstract class GameState {
 	 */
 	public abstract void handleInput();
 
-	public GameObject getGameObject(String name) {
-		return gameObjects.get(name);
-	}
+	public abstract GameObject getGameObject(String name);
 
 	/**
 	 * Return Game State Manager.
 	 * 
 	 * @return
 	 */
-	public GSM getGsm() {
-		return gsm;
-	}
+	public abstract GSM getGsm();
 
 	/**
 	 * If needed return the next Level.
 	 * 
 	 * @return
 	 */
-	public String nextState() {
-		return "";
-	}
+	public abstract String nextState();
 
 	/**
 	 * Return the <code>name</code> attribute.
@@ -99,9 +56,7 @@ public abstract class GameState {
 	 * @param name
 	 * @return
 	 */
-	public Object getAttribute(String name) {
-		return attributes.get(name);
-	}
+	public abstract Object getAttribute(String name);
 
 	/**
 	 * Set <code>value</code> attribute to <code>name</code>.
@@ -109,9 +64,7 @@ public abstract class GameState {
 	 * @param name
 	 * @param value
 	 */
-	public void setAttribute(String name, Object value) {
-		attributes.put(name, value);
-	}
+	public abstract void setAttribute(String name, Object value);
 
 	/**
 	 * Is <code>name</code>'s attribute exists in attributes list ?
@@ -120,8 +73,6 @@ public abstract class GameState {
 	 *            name of the attribute to search for.
 	 * @return true if attribute exists.
 	 */
-	public boolean containsAttribute(String name) {
-		return attributes.containsKey(name);
-	}
+	public abstract boolean containsAttribute(String name);
 
 }

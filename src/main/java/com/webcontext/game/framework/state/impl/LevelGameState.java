@@ -1,4 +1,4 @@
-package com.webcontext.game.framework.state;
+package com.webcontext.game.framework.state.impl;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -28,7 +28,7 @@ import com.webcontext.game.framework.handler.InputHandler;
  * @author Frédéric Delorme<frederic.delorme@web-context.com>(refactoring)
  *
  */
-public abstract class LevelGameState extends GameState {
+public abstract class LevelGameState extends GenericGameState {
 	/**
 	 * Main player
 	 */

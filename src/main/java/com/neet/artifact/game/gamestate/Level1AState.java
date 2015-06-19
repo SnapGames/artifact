@@ -22,8 +22,8 @@ import com.webcontext.game.framework.audio.JukeBox;
 import com.webcontext.game.framework.entity.Enemy;
 import com.webcontext.game.framework.gfx.Background;
 import com.webcontext.game.framework.gfx.tilemap.TileMap;
-import com.webcontext.game.framework.state.GameStateManager;
-import com.webcontext.game.framework.state.LevelGameState;
+import com.webcontext.game.framework.state.impl.GameStateManager;
+import com.webcontext.game.framework.state.impl.LevelGameState;
 
 /**
  * THe first discovering level , to learn how to play !

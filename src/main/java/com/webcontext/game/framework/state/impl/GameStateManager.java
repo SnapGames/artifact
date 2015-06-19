@@ -1,4 +1,4 @@
-package com.webcontext.game.framework.state;
+package com.webcontext.game.framework.state.impl;
 
 import java.awt.Graphics2D;
 import java.lang.reflect.Constructor;
@@ -8,6 +8,8 @@ import java.util.Map;
 
 import com.webcontext.game.framework.GamePanel;
 import com.webcontext.game.framework.audio.JukeBox;
+import com.webcontext.game.framework.state.GSM;
+import com.webcontext.game.framework.state.GameState;
 
 public class GameStateManager implements GSM {
 
@@ -27,7 +29,7 @@ public class GameStateManager implements GSM {
 	 * Pause state engaged ?
 	 */
 	protected boolean paused;
-	private Map<String, GameState> activeStates = new HashMap<String, GameState>();
+	private Map<String, GameState> activeStates = new HashMap<>();
 
 	public GameStateManager() {
 		JukeBox.init();
@@ -35,7 +37,7 @@ public class GameStateManager implements GSM {
 	}
 
 	/**
-	 * Prepare {@link GameState} for the game <code>state</code>.
+	 * Prepare {@link GenericGameState} for the game <code>state</code>.
 	 * 
 	 * @param state
 	 */
@@ -48,7 +50,7 @@ public class GameStateManager implements GSM {
 				Constructor<?> activeStateCst = stateClass
 						.getDeclaredConstructor(new Class[] { GameStateManager.class });
 				// instances the GameSate, and store to cache..
-				activeStates.put(state, (GameState) activeStateCst
+				activeStates.put(state, (GenericGameState) activeStateCst
 						.newInstance(new Object[] { this }));
 
 			} catch (InstantiationException | IllegalAccessException

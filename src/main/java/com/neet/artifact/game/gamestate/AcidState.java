@@ -9,8 +9,8 @@ import javax.imageio.ImageIO;
 
 import com.webcontext.game.framework.GamePanel;
 import com.webcontext.game.framework.handler.InputHandler;
-import com.webcontext.game.framework.state.GameState;
-import com.webcontext.game.framework.state.GameStateManager;
+import com.webcontext.game.framework.state.impl.GameStateManager;
+import com.webcontext.game.framework.state.impl.GenericGameState;
 
 /**
  * 
@@ -21,7 +21,7 @@ import com.webcontext.game.framework.state.GameStateManager;
  * @author Frédéric Delorme<frederic.delorme@web-context.com>(refactoring)
  *
  */
-public class AcidState extends GameState {
+public class AcidState extends GenericGameState {
 
 	private float hue;
 	private Color color;
