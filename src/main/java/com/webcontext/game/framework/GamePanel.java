@@ -55,9 +55,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 	 */
 	private boolean screenShot;
 	/**
-	 * TODO Switch to full screen mode.
+	 * Switch to full screen mode.
 	 */
-	private boolean fullScreen;
+	// TODO private boolean fullScreen;
 
 	/**
 	 * Default constructor for this Game. Initialize object size.

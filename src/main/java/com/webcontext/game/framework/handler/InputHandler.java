@@ -1,13 +1,18 @@
 package com.webcontext.game.framework.handler;
 
 import java.awt.event.KeyEvent;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * this class contains a boolean array of current and previous key state for the
  * 10 keys that are used for this game. a key k is down when keyState[k] is
  * true.
  * 
- * @author ForeignGuyMike(https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ)
+ * @author 
+ *         ForeignGuyMike(https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ
+ *         )
  * @author Frédéric Delorme<frederic.delorme@web-context.com>(refactoring)
  *
  */
@@ -34,7 +39,9 @@ public class InputHandler {
 		BUTTON3(6),
 		BUTTON4(7),
 		ENTER(8),
-		ESCAPE(9);
+		ESCAPE(9),
+		SCREENSHOT(10),
+		RECORD(11);
 
 		/**
 		 * Internal key code.
@@ -56,43 +63,47 @@ public class InputHandler {
 	}
 
 	/**
+	 * Internal key mapping for the game.
+	 */
+	private static Map<KeyCode, Integer> keyMapping;
+
+	/**
+	 * initializing default mapping.
+	 */
+	static {
+		keyMapping = new HashMap<>();
+		keyMapping.put(KeyCode.BUTTON1, KeyEvent.VK_W);
+		keyMapping.put(KeyCode.BUTTON2, KeyEvent.VK_X);
+		keyMapping.put(KeyCode.BUTTON3, KeyEvent.VK_C);
+		keyMapping.put(KeyCode.BUTTON4, KeyEvent.VK_F);
+		keyMapping.put(KeyCode.UP, KeyEvent.VK_UP);
+		keyMapping.put(KeyCode.DOWN, KeyEvent.VK_DOWN);
+		keyMapping.put(KeyCode.LEFT, KeyEvent.VK_LEFT);
+		keyMapping.put(KeyCode.RIGHT, KeyEvent.VK_RIGHT);
+		keyMapping.put(KeyCode.ENTER, KeyEvent.VK_ENTER);
+		keyMapping.put(KeyCode.ESCAPE, KeyEvent.VK_ESCAPE);
+		keyMapping.put(KeyCode.SCREENSHOT, KeyEvent.VK_S);
+		keyMapping.put(KeyCode.RECORD, KeyEvent.VK_R);
+	}
+
+	/**
+	 * Default constructor .
+	 */
+	public InputHandler() {
+	}
+
+	/**
 	 * Verify Keys.
 	 * 
 	 * @param i
 	 * @param b
 	 */
 	public static void keySet(int i, boolean b) {
-		switch (i) {
-		case KeyEvent.VK_UP:
-			keyState[KeyCode.UP.code()] = b;
-			break;
-		case KeyEvent.VK_LEFT:
-			keyState[KeyCode.LEFT.code()] = b;
-			break;
-		case KeyEvent.VK_DOWN:
-			keyState[KeyCode.DOWN.code()] = b;
-			break;
-		case KeyEvent.VK_RIGHT:
-			keyState[KeyCode.RIGHT.code()] = b;
-			break;
-		case KeyEvent.VK_W:
-			keyState[KeyCode.BUTTON1.code()] = b;
-			break;
-		case KeyEvent.VK_X:
-			keyState[KeyCode.BUTTON2.code()] = b;
-			break;
-		case KeyEvent.VK_C:
-			keyState[KeyCode.BUTTON3.code()] = b;
-			break;
-		case KeyEvent.VK_F:
-			keyState[KeyCode.BUTTON4.code()] = b;
-			break;
-		case KeyEvent.VK_ENTER:
-			keyState[KeyCode.ENTER.code()] = b;
-			break;
-		case KeyEvent.VK_ESCAPE:
-			keyState[KeyCode.ESCAPE.code()] = b;
-			break;
+
+		for (Entry<KeyCode, Integer> entry : keyMapping.entrySet()) {
+			if (i == entry.getValue()) {
+				keyState[entry.getKey().code()] = b;
+			}
 		}
 	}
 

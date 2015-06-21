@@ -28,7 +28,7 @@ import com.webcontext.game.framework.handler.InputHandler;
  * @author Frédéric Delorme<frederic.delorme@web-context.com>(refactoring)
  *
  */
-public abstract class LevelGameState extends GenericGameState {
+public abstract class GameLevelState extends GenericGameState {
 	/**
 	 * Main player
 	 */
@@ -46,7 +46,7 @@ public abstract class LevelGameState extends GenericGameState {
 	 */
 	protected ArrayList<EnemyProjectile> eprojectiles;
 	/**
-	 * Particules to be rendered.
+	 * Particles to be rendered.
 	 */
 	protected ArrayList<EnergyParticle> energyParticles;
 	/**
@@ -82,7 +82,7 @@ public abstract class LevelGameState extends GenericGameState {
 	 * 
 	 * @param gsm
 	 */
-	public LevelGameState(GameStateManager gsm) {
+	public GameLevelState(GameStateManager gsm) {
 		super(gsm);
 		eventManager = new EventManager();
 		// Register event Start.

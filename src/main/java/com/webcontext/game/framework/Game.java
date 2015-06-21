@@ -22,7 +22,7 @@ public abstract class Game {
 	 */
 	private static ResourceBundle props;
 	/**
-	 * Supported languages
+	 * Supported languages TODO add auto detection of locale.
 	 */
 	private Locale[] supportedLocales;
 	/**
@@ -52,7 +52,6 @@ public abstract class Game {
 	public static void setLanguage(Locale locale) {
 		props = ResourceBundle.getBundle("game", locale);
 	}
-
 
 	/**
 	 * @param game

@@ -18,11 +18,33 @@
 		<connection>scm:git:git@bitbucket.org:McGivrer/artifact.git</connection>
 		<developerConnection>scm:git:git@bitbucket.org:McGivrer/artifact.git</developerConnection>
 		<tag>${project.version}</tag>
+		<url>https://bitbucket.org/snapgames/platform2d</url>
 	</scm>
 	<issueManagement>
 		<system>Bitbucket</system>
 		<url>https://bitbucket.org/McGivrer/artifact/issues</url>
 	</issueManagement>
+
+	<contributors>
+		<contributor>
+			<name>Frédéric Delorme</name>
+			<email>frederic.delorme@gmail.com</email>
+			<organization>SnapGames</organization>
+			<organizationUrl>snapgames.bitbucket.org</organizationUrl>
+			<timezone>Europe/Paris</timezone>
+			<roles>
+				<role>software designer</role>
+			</roles>
+		</contributor>
+	</contributors>
+
+	<properties>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<timestamp>${maven.build.timestamp}</timestamp>
+		<maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
+		<mainClass>com.neet.artifact.game.main.Artifact</mainClass>
+	</properties>
 
 	<dependencies>
 		<dependency>
@@ -41,6 +63,7 @@
 			<version>0.3.7-2</version>
 		</dependency>
 	</dependencies>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -81,20 +104,67 @@
 					</execution>
 				</executions>
 			</plugin>
+			<!-- Produce Javadoc JAR -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.10.2</version>
+				<configuration>
+					<quiet>true</quiet>
+					<failOnError>false</failOnError>
+					<encoding>utf-8</encoding>
+				</configuration>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- Produce Sources JAR -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<encoding>utf-8</encoding>
+					<excludes>
+						<exclude>**/META-INF/**</exclude>
+					</excludes>
+				</configuration>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- Build JAR with manifest -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>2.6</version>
 				<configuration>
 					<archive>
+						<index>true</index>
 						<manifest>
 							<addClasspath>true</addClasspath>
-							<classpathPrefix>lib/</classpathPrefix>
-							<mainClass>com.neet.framework.Game</mainClass>
+							<mainClass>${mainClass}</mainClass>
 						</manifest>
+						<manifestEntries>
+							<mode>development</mode>
+							<url>${project.url}</url>
+							<key>value</key>
+						</manifestEntries>
 					</archive>
 				</configuration>
 			</plugin>
+
+
 		</plugins>
 	</build>
 

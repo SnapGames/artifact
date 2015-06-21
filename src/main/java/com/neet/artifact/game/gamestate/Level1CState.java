@@ -25,7 +25,7 @@ import com.webcontext.game.framework.entity.Enemy;
 import com.webcontext.game.framework.gfx.Background;
 import com.webcontext.game.framework.gfx.tilemap.TileMap;
 import com.webcontext.game.framework.state.impl.GameStateManager;
-import com.webcontext.game.framework.state.impl.LevelGameState;
+import com.webcontext.game.framework.state.impl.GameLevelState;
 
 /**
  * The final level where you fight against the boss !
@@ -36,7 +36,7 @@ import com.webcontext.game.framework.state.impl.LevelGameState;
  * @author Frédéric Delorme<frederic.delorme@web-context.com>(refactoring)
  *
  */
-public class Level1CState extends LevelGameState {
+public class Level1CState extends GameLevelState {
 
 	private Background temple;
 

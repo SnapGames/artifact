@@ -23,7 +23,7 @@ import com.webcontext.game.framework.entity.Enemy;
 import com.webcontext.game.framework.gfx.Background;
 import com.webcontext.game.framework.gfx.tilemap.TileMap;
 import com.webcontext.game.framework.state.impl.GameStateManager;
-import com.webcontext.game.framework.state.impl.LevelGameState;
+import com.webcontext.game.framework.state.impl.GameLevelState;
 
 /**
  * THe first discovering level , to learn how to play !
@@ -34,7 +34,7 @@ import com.webcontext.game.framework.state.impl.LevelGameState;
  * @author Frédéric Delorme<frederic.delorme@web-context.com>(refactoring)
  *
  */
-public class Level1AState extends LevelGameState {
+public class Level1AState extends GameLevelState {
 
 	private Background sky;
 	private Background clouds;
