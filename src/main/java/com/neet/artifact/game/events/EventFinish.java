@@ -16,7 +16,7 @@ import com.webcontext.game.framework.state.GameState;
 /**
  * Event raised at Level Finish.
  * 
- * @author Frederic Delorme
+ * @author Frédéric Delorme
  *
  */
 public class EventFinish extends Event {

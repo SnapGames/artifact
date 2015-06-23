@@ -13,12 +13,11 @@ import com.webcontext.game.framework.state.impl.GameStateManager;
 import com.webcontext.game.framework.state.impl.GenericGameState;
 
 /**
- * 
+ * Death and Teleport state.
  * 
  * @author 
- *         ForeignGuyMike(https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ
- *         )
- * @author Frédéric Delorme<frederic.delorme@web-context.com>(refactoring)
+ *         ForeignGuyMike
+ * @author Frédéric Delorme
  *
  */
 public class AcidState extends GenericGameState {

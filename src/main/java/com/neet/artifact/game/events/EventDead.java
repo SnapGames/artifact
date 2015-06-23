@@ -16,7 +16,7 @@ import com.webcontext.game.framework.state.GameState;
 /**
  * Event raised at Player's dead.
  * 
- * @author Frederic Delorme
+ * @author Frédéric Delorme
  *
  */
 public class EventDead extends Event {

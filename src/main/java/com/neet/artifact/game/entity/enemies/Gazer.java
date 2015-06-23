@@ -10,8 +10,8 @@ import com.webcontext.game.framework.resources.ContentManager;
 /**
  * Gaze enemy.
  * 
- * @authorForeignGuyMike(https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ)
- * @author Frédéric Delorme<frederic.delorme@web-context.com>(refactoring)
+ * @author ForeignGuyMike
+ * @author Frédéric Delorme
  *
  */
 public class Gazer extends Enemy {

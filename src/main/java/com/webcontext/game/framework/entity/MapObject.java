@@ -4,13 +4,14 @@ import java.awt.Rectangle;
 
 import com.webcontext.game.framework.GamePanel;
 import com.webcontext.game.framework.gfx.tilemap.Tile;
+import com.webcontext.game.framework.gfx.tilemap.Tile.TileType;
 import com.webcontext.game.framework.gfx.tilemap.TileMap;
 
 /**
  * This object is the base for all Object moving on the Map (the TileMap)
  * 
- * @authorForeignGuyMike(https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ)
- * @author Frédéric Delorme<frederic.delorme@web-context.com>(refactoring)
+ * @authorForeignGuyMike
+ * @author Frédéric Delorme
  *
  */
 public abstract class MapObject implements GameObject {
@@ -20,7 +21,7 @@ public abstract class MapObject implements GameObject {
 	protected int tileSize;
 	protected double xmap;
 	protected double ymap;
-	protected boolean debug = false;;
+	protected boolean debug = false;
 
 	// position and vector
 	protected double x;
@@ -157,14 +158,14 @@ public abstract class MapObject implements GameObject {
 			topLeft = topRight = bottomLeft = bottomRight = false;
 			return;
 		}
-		int tl = tileMap.getType(topTile, leftTile);
-		int tr = tileMap.getType(topTile, rightTile);
-		int bl = tileMap.getType(bottomTile, leftTile);
-		int br = tileMap.getType(bottomTile, rightTile);
-		topLeft = tl == Tile.BLOCKED;
-		topRight = tr == Tile.BLOCKED;
-		bottomLeft = bl == Tile.BLOCKED;
-		bottomRight = br == Tile.BLOCKED;
+		TileType tl = tileMap.getType(topTile, leftTile);
+		TileType tr = tileMap.getType(topTile, rightTile);
+		TileType bl = tileMap.getType(bottomTile, leftTile);
+		TileType br = tileMap.getType(bottomTile, rightTile);
+		topLeft = tl == Tile.TileType.BLOCKED;
+		topRight = tr == Tile.TileType.BLOCKED;
+		bottomLeft = bl == Tile.TileType.BLOCKED;
+		bottomRight = br == Tile.TileType.BLOCKED;
 	}
 
 	/**

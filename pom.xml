@@ -7,7 +7,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 
 	<name>Artifact</name>
-	<description>A small platform game tutorial</description>
+	<description>A small platform game tutorial top build a basic Framework over the sample game, and extract useful mechanism.</description>
 
 	<inceptionYear>2013-2015</inceptionYear>
 	<organization>
@@ -36,6 +36,13 @@
 				<role>software designer</role>
 			</roles>
 		</contributor>
+        <contributor>
+            <name>ForeignGuyMike</name>
+            <url>https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ</url>
+            <roles>
+                <role>Author</role>
+            </roles>
+        </contributor>
 	</contributors>
 
 	<properties>
@@ -129,10 +136,10 @@
 				<artifactId>maven-source-plugin</artifactId>
 				<version>2.4</version>
 				<configuration>
-					<encoding>utf-8</encoding>
 					<excludes>
 						<exclude>**/META-INF/**</exclude>
 					</excludes>
+                    <encoding>utf-8</encoding>
 				</configuration>
 				<executions>
 					<execution>

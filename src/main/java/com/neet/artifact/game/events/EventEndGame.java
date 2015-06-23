@@ -15,7 +15,7 @@ import com.webcontext.game.framework.state.GameState;
 /**
  * Event raised at end of game.
  * 
- * @author Frederic Delorme
+ * @author Frédéric Delorme
  *
  */
 public class EventEndGame extends Event {

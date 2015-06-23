@@ -12,8 +12,8 @@ import com.webcontext.game.framework.resources.ContentManager;
 /**
  * GelPop Enemy.
  * 
- * @authorForeignGuyMike(https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ)
- * @author Frédéric Delorme<frederic.delorme@web-context.com>(refactoring)
+ * @author ForeignGuyMike
+ * @author Frédéric Delorme
  *
  */
 public class GelPop extends Enemy {

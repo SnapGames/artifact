@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 
 import com.webcontext.game.framework.GamePanel;
 import com.webcontext.game.framework.entity.GameObject;
+import com.webcontext.game.framework.gfx.tilemap.Tile.TileType;
 
 /**
  * TileMap graphical object to render all background graphics based on simple
@@ -86,10 +87,10 @@ public class TileMap implements GameObject {
 			for (int col = 0; col < numTilesAcross; col++) {
 				subimage = tileset.getSubimage(col * tileSize, 0, tileSize,
 						tileSize);
-				tiles[0][col] = new Tile(subimage, Tile.NORMAL);
+				tiles[0][col] = new Tile(subimage, Tile.TileType.NORMAL);
 				subimage = tileset.getSubimage(col * tileSize, tileSize,
 						tileSize, tileSize);
-				tiles[1][col] = new Tile(subimage, Tile.BLOCKED);
+				tiles[1][col] = new Tile(subimage, Tile.TileType.BLOCKED);
 			}
 
 		} catch (Exception e) {
@@ -146,7 +147,7 @@ public class TileMap implements GameObject {
 	 *            column in the map
 	 * @return return type of the Tile at (row,col).
 	 */
-	public int getType(int row, int col) {
+	public TileType getType(int row, int col) {
 		int rc = map[row][col];
 		int r = rc / numTilesAcross;
 		int c = rc % numTilesAcross;
@@ -268,6 +269,7 @@ public class TileMap implements GameObject {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.neet.framework.entity.GameObject#init()
 	 */
 	@Override
@@ -279,12 +281,13 @@ public class TileMap implements GameObject {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.neet.framework.entity.GameObject#reset()
 	 */
 	@Override
 	public void reset() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

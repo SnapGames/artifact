@@ -112,7 +112,7 @@ public class MenuState extends GenericGameState {
 		// draw title
 		g.setColor(titleColor);
 		g.setFont(titleFont);
-		g.drawString("A R T I F A C T", 70, 90);
+		g.drawString(Game.getMessage("game.title"), 70, 90);
 
 		// draw menu options
 		g.setFont(font);
@@ -126,7 +126,7 @@ public class MenuState extends GenericGameState {
 
 		// other
 		g.setFont(font2);
-		g.drawString("2013 Mike S.", 10, 232);
+		g.drawString(Game.getMessage("game.copyright"), 10, 232);
 
 	}
 

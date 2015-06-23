@@ -15,7 +15,7 @@ import com.webcontext.game.framework.state.GameState;
 /**
  * Start event processing Title and subtitle display.
  * 
- * @author Frederic Delorme
+ * @author Frédéric Delorme
  *
  */
 public class EventStart extends Event {

@@ -16,8 +16,8 @@ import com.webcontext.game.framework.gfx.tilemap.TileMap;
 /**
  * Player is the Main MapObject managed by the user.
  * 
- * @authorForeignGuyMike(https://www.youtube.com/channel/UC_IV37n-uBpRp64hQIwywWQ)
- * @author Frédéric Delorme<frederic.delorme@web-context.com>(refactoring)
+ * @author ForeignGuyMike
+ * @author Frédéric Delorme
  *
  */
 public class Player extends MapObject implements GameObject {

@@ -11,6 +11,7 @@ import com.webcontext.game.framework.entity.GameObject;
 /**
  * Title object to be displayed on some GameState
  * 
+ * @author ForeignGuyMike
  * @author Frederic Delorme
  *
  */
