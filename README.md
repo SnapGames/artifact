@@ -1,4 +1,4 @@
-[![https://travis-ci.org/SnapGames/platform2D.svg?branch=master]](https://travis-ci.org/SnapGames/platform2D/requests)
+[![Travis-CI (linux) Build status](https://travis-ci.org/SnapGames/platform2D.svg?branch=master)](https://travis-ci.org/SnapGames/platform2D/requests "Travis-CI (linux) Build Status")
 
 Artifact
 ======
