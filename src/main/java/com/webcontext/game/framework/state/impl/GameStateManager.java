@@ -104,8 +104,8 @@ public class GameStateManager implements GSM {
 			pauseState.update(delay);
 			return;
 		}
-		// if (activeStates.containsKey(currentState))
-		activeStates.get(currentState).update(delay);
+		if (activeStates.containsKey(currentState))
+			activeStates.get(currentState).update(delay);
 	}
 
 	/*
