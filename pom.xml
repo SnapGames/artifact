@@ -175,4 +175,8 @@
 		</plugins>
 	</build>
 
+	<ciManagement>
+		<system>travis-ci</system>
+		<url>https://travis-ci.org/web-context/platform2d</url>
+	</ciManagement>
 </project>

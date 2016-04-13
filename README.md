@@ -1,3 +1,5 @@
+[![https://travis-ci.org/SnapGames/platform2D.svg?branch=master]](https://travis-ci.org/SnapGames/platform2D/requests)
+
 Artifact
 ======
 
