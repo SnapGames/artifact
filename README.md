@@ -1,4 +1,4 @@
-[![Dependency Status](https://www.versioneye.com/user/projects/571162b6fcd19a004544111a/badge.svg?style=flat)](https://www.versioneye.com/user/projects/571162b6fcd19a004544111a#dialog_dependency_badge)
+[![Dependency Status](https://www.versioneye.com/user/projects/579236bb4323c1004b7584eb/badge.svg?style=flat)](https://www.versioneye.com/user/projects/579236bb4323c1004b7584eb#dialog_dependency_badge)
 [![AppVeyor (win32) Build status](https://ci.appveyor.com/api/projects/status/2xid3rsoeqtoacra?svg=true)](https://ci.appveyor.com/project/SnapGames/platform2D "AppVeyor (win32) Build status")
 [![Travis-CI (linux) Build status](https://travis-ci.org/SnapGames/artifact.svg?branch=master)](https://travis-ci.org/SnapGames/artifact/requests "Travis-CI (linux) Build Status")
 
