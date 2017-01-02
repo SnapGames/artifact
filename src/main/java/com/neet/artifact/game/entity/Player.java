@@ -375,7 +375,7 @@ public class Player extends MapObject {
 			doubleJump = false;
 			JukeBox.play("playerjump");
 			for (int i = 0; i < 6; i++) {
-				energyParticles.add(new EnergyParticle(tileMap, x, y + cheight / 4, EnergyParticle.DOWN));
+				energyParticles.add(new EnergyParticle(tileMap, x, y + cheight / 4, EnergyParticle.Direction.DOWN));
 			}
 		}
 
@@ -412,7 +412,7 @@ public class Player extends MapObject {
 
 		// check teleporting
 		if (teleporting) {
-			energyParticles.add(new EnergyParticle(tileMap, x, y, EnergyParticle.UP));
+			energyParticles.add(new EnergyParticle(tileMap, x, y, EnergyParticle.Direction.UP));
 		}
 
 		// update position
@@ -460,9 +460,9 @@ public class Player extends MapObject {
 			else
 				cr.x = (int) x - 35;
 			if (facingRight)
-				energyParticles.add(new EnergyParticle(tileMap, x + 30, y, EnergyParticle.RIGHT));
+				energyParticles.add(new EnergyParticle(tileMap, x + 30, y, EnergyParticle.Direction.RIGHT));
 			else
-				energyParticles.add(new EnergyParticle(tileMap, x - 30, y, EnergyParticle.LEFT));
+				energyParticles.add(new EnergyParticle(tileMap, x - 30, y, EnergyParticle.Direction.LEFT));
 		}
 
 		// check enemy interaction
@@ -529,8 +529,8 @@ public class Player extends MapObject {
 			} else {
 				if (animation.getFrame() == 4 && animation.getCount() == 0) {
 					for (int c = 0; c < 3; c++) {
-						energyParticles
-								.add(new EnergyParticle(tileMap, aur.x + aur.width / 2, aur.y + 5, EnergyParticle.UP));
+						energyParticles.add(new EnergyParticle(tileMap, aur.x + aur.width / 2, aur.y + 5,
+								EnergyParticle.Direction.UP));
 					}
 				}
 			}
@@ -548,10 +548,10 @@ public class Player extends MapObject {
 					for (int c = 0; c < 3; c++) {
 						if (facingRight)
 							energyParticles.add(new EnergyParticle(tileMap, ar.x + ar.width - 4, ar.y + ar.height / 2,
-									EnergyParticle.RIGHT));
+									EnergyParticle.Direction.RIGHT));
 						else
-							energyParticles.add(
-									new EnergyParticle(tileMap, ar.x + 4, ar.y + ar.height / 2, EnergyParticle.LEFT));
+							energyParticles.add(new EnergyParticle(tileMap, ar.x + 4, ar.y + ar.height / 2,
+									EnergyParticle.Direction.LEFT));
 					}
 				}
 			}

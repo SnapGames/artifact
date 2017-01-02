@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 import com.neet.artifact.game.entity.EnergyParticle;
+import com.neet.artifact.game.entity.EnergyParticle.Direction;
 import com.neet.artifact.game.entity.Explosion;
 import com.neet.artifact.game.entity.HUD;
 import com.neet.artifact.game.entity.Player;
@@ -26,6 +27,7 @@ import com.snapgames.framework.gfx.Background;
 import com.snapgames.framework.gfx.tilemap.TileMap;
 import com.snapgames.framework.state.impl.GameLevelState;
 import com.snapgames.framework.state.impl.GameStateManager;
+import com.snapgames.framework.tools.EnumRandomizer;
 
 /**
  * The final level where you fight against the boss !
@@ -253,7 +255,7 @@ public class Level1CState extends GameLevelState {
         }
         if (eventCount > 60 && eventCount < 180) {
             energyParticles.add(new EnergyParticle(tileMap, 157, 107,
-                    (int) (Math.random() * 4)));
+                    EnumRandomizer.random(Direction.class)));
         }
         if (eventCount >= 160 && eventCount <= 180) {
             if (eventCount % 4 == 0 || eventCount % 4 == 1)
