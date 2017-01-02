@@ -19,13 +19,13 @@ import com.neet.artifact.game.events.EventDead;
 import com.neet.artifact.game.events.EventEndGame;
 import com.neet.artifact.game.events.EventFinish;
 import com.neet.artifact.game.events.EventStart;
-import com.webcontext.game.framework.GamePanel;
-import com.webcontext.game.framework.audio.JukeBox;
-import com.webcontext.game.framework.entity.Enemy;
-import com.webcontext.game.framework.gfx.Background;
-import com.webcontext.game.framework.gfx.tilemap.TileMap;
-import com.webcontext.game.framework.state.impl.GameStateManager;
-import com.webcontext.game.framework.state.impl.GameLevelState;
+import com.snapgames.framework.GamePanel;
+import com.snapgames.framework.audio.JukeBox;
+import com.snapgames.framework.entity.Enemy;
+import com.snapgames.framework.gfx.Background;
+import com.snapgames.framework.gfx.tilemap.TileMap;
+import com.snapgames.framework.state.impl.GameLevelState;
+import com.snapgames.framework.state.impl.GameStateManager;
 
 /**
  * The final level where you fight against the boss !

@@ -1,8 +1,8 @@
 package com.neet.artifact.game.gamestate;
 
-import com.webcontext.game.framework.audio.JukeBox;
-import com.webcontext.game.framework.state.GSM;
-import com.webcontext.game.framework.state.impl.GameStateManager;
+import com.snapgames.framework.audio.JukeBox;
+import com.snapgames.framework.state.GSM;
+import com.snapgames.framework.state.impl.GameStateManager;
 
 /**
  * Game state manager is the Earth Beat of the game. Switching and orchestrating

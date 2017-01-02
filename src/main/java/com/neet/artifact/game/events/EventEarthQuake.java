@@ -4,9 +4,9 @@
 package com.neet.artifact.game.events;
 
 import com.neet.artifact.game.entity.Player;
-import com.webcontext.game.framework.event.Event;
-import com.webcontext.game.framework.gfx.tilemap.TileMap;
-import com.webcontext.game.framework.state.GameState;
+import com.snapgames.framework.event.Event;
+import com.snapgames.framework.gfx.tilemap.TileMap;
+import com.snapgames.framework.state.GameState;
 
 /**
  * Generate earth quake.

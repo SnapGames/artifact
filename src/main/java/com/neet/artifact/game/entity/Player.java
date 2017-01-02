@@ -7,11 +7,10 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
-import com.webcontext.game.framework.audio.JukeBox;
-import com.webcontext.game.framework.entity.Enemy;
-import com.webcontext.game.framework.entity.GameObject;
-import com.webcontext.game.framework.entity.MapObject;
-import com.webcontext.game.framework.gfx.tilemap.TileMap;
+import com.snapgames.framework.audio.JukeBox;
+import com.snapgames.framework.entity.Enemy;
+import com.snapgames.framework.entity.MapObject;
+import com.snapgames.framework.gfx.tilemap.TileMap;
 
 /**
  * Player is the Main MapObject managed by the user.
@@ -20,25 +19,23 @@ import com.webcontext.game.framework.gfx.tilemap.TileMap;
  * @author Frédéric Delorme
  *
  */
-public class Player extends MapObject implements GameObject {
+public class Player extends MapObject {
 
 	// references
 	private ArrayList<Enemy> enemies;
+
+	// Particles
+	private ArrayList<EnergyParticle> energyParticles;
 
 	// player stuff
 	private int lives;
 	private int health;
 	private int maxHealth;
 	private int damage;
-	private int chargeDamage;
-	private boolean knockback;
-	private boolean flinching;
 	private long flinchCount;
 	private int score;
-	private boolean doubleJump;
-	private boolean alreadyDoubleJump;
+	private int chargeDamage;
 	private double doubleJumpStart;
-	private ArrayList<EnergyParticle> energyParticles;
 	private long time;
 
 	// actions
@@ -48,14 +45,16 @@ public class Player extends MapObject implements GameObject {
 	private boolean charging;
 	private int chargingTick;
 	private boolean teleporting;
+	private boolean knockback;
+	private boolean flinching;
+	private boolean doubleJump;
+	private boolean alreadyDoubleJump;
 
 	// animations
 	private ArrayList<BufferedImage[]> sprites;
 	private final int[] NUMFRAMES = { 1, 8, 5, 3, 3, 5, 3, 8, 2, 1, 3 };
-	private final int[] FRAMEWIDTHS = { 40, 40, 80, 40, 40, 40, 80, 40, 40, 40,
-			40 };
-	private final int[] FRAMEHEIGHTS = { 40, 40, 40, 40, 40, 80, 40, 40, 40,
-			40, 40 };
+	private final int[] FRAMEWIDTHS = { 40, 40, 80, 40, 40, 40, 80, 40, 40, 40, 40 };
+	private final int[] FRAMEHEIGHTS = { 40, 40, 40, 40, 40, 80, 40, 40, 40, 40, 40 };
 	private final int[] SPRITEDELAYS = { -1, 3, 2, 6, 5, 2, 2, 2, 1, -1, 1 };
 
 	private Rectangle ar;
@@ -87,6 +86,52 @@ public class Player extends MapObject implements GameObject {
 
 		super(tm);
 
+		init();
+
+		// load sprites
+		try {
+
+			BufferedImage spritesheet = ImageIO
+					.read(getClass().getResourceAsStream("/Sprites/Player/PlayerSprites.gif"));
+
+			int count = 0;
+			sprites = new ArrayList<BufferedImage[]>();
+			for (int i = 0; i < NUMFRAMES.length; i++) {
+				BufferedImage[] bi = new BufferedImage[NUMFRAMES[i]];
+				for (int j = 0; j < NUMFRAMES[i]; j++) {
+					bi[j] = spritesheet.getSubimage(j * FRAMEWIDTHS[i], count, FRAMEWIDTHS[i], FRAMEHEIGHTS[i]);
+				}
+				sprites.add(bi);
+				count += FRAMEHEIGHTS[i];
+			}
+
+			// emotes
+			spritesheet = ImageIO.read(getClass().getResourceAsStream("/HUD/Emotes.gif"));
+			confused = spritesheet.getSubimage(0, 0, 14, 17);
+			surprised = spritesheet.getSubimage(14, 0, 14, 17);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		energyParticles = new ArrayList<EnergyParticle>();
+
+		setAnimation(IDLE);
+
+		JukeBox.load("/SFX/playerjump.mp3", "playerjump");
+		JukeBox.load("/SFX/playerlands.mp3", "playerlands");
+		JukeBox.load("/SFX/playerattack.mp3", "playerattack");
+		JukeBox.load("/SFX/playerhit.mp3", "playerhit");
+		JukeBox.load("/SFX/playercharge.mp3", "playercharge");
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.snapgames.framework.entity.GameObject#init()
+	 */
+	public void init() {
 		ar = new Rectangle(0, 0, 0, 0);
 		ar.width = 30;
 		ar.height = 20;
@@ -116,49 +161,9 @@ public class Player extends MapObject implements GameObject {
 
 		lives = 3;
 		health = maxHealth = 5;
-
-		// load sprites
-		try {
-
-			BufferedImage spritesheet = ImageIO.read(getClass()
-					.getResourceAsStream("/Sprites/Player/PlayerSprites.gif"));
-
-			int count = 0;
-			sprites = new ArrayList<BufferedImage[]>();
-			for (int i = 0; i < NUMFRAMES.length; i++) {
-				BufferedImage[] bi = new BufferedImage[NUMFRAMES[i]];
-				for (int j = 0; j < NUMFRAMES[i]; j++) {
-					bi[j] = spritesheet.getSubimage(j * FRAMEWIDTHS[i], count,
-							FRAMEWIDTHS[i], FRAMEHEIGHTS[i]);
-				}
-				sprites.add(bi);
-				count += FRAMEHEIGHTS[i];
-			}
-
-			// emotes
-			spritesheet = ImageIO.read(getClass().getResourceAsStream(
-					"/HUD/Emotes.gif"));
-			confused = spritesheet.getSubimage(0, 0, 14, 17);
-			surprised = spritesheet.getSubimage(14, 0, 14, 17);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		energyParticles = new ArrayList<EnergyParticle>();
-
-		setAnimation(IDLE);
-
-		JukeBox.load("/SFX/playerjump.mp3", "playerjump");
-		JukeBox.load("/SFX/playerlands.mp3", "playerlands");
-		JukeBox.load("/SFX/playerattack.mp3", "playerattack");
-		JukeBox.load("/SFX/playerhit.mp3", "playerhit");
-		JukeBox.load("/SFX/playercharge.mp3", "playercharge");
-
 	}
 
-	public void init(ArrayList<Enemy> enemies,
-			ArrayList<EnergyParticle> energyParticles) {
+	public void init(ArrayList<Enemy> enemies, ArrayList<EnergyParticle> energyParticles) {
 		this.enemies = enemies;
 		this.energyParticles = energyParticles;
 	}
@@ -229,8 +234,7 @@ public class Player extends MapObject implements GameObject {
 	public String getTimeToString() {
 		int minutes = (int) (time / 3600);
 		int seconds = (int) ((time % 3600) / 60);
-		return seconds < 10 ? minutes + ":0" + seconds : minutes + ":"
-				+ seconds;
+		return seconds < 10 ? minutes + ":0" + seconds : minutes + ":" + seconds;
 	}
 
 	public long getTime() {
@@ -371,8 +375,7 @@ public class Player extends MapObject implements GameObject {
 			doubleJump = false;
 			JukeBox.play("playerjump");
 			for (int i = 0; i < 6; i++) {
-				energyParticles.add(new EnergyParticle(tileMap, x, y + cheight
-						/ 4, EnergyParticle.DOWN));
+				energyParticles.add(new EnergyParticle(tileMap, x, y + cheight / 4, EnergyParticle.DOWN));
 			}
 		}
 
@@ -409,8 +412,7 @@ public class Player extends MapObject implements GameObject {
 
 		// check teleporting
 		if (teleporting) {
-			energyParticles.add(new EnergyParticle(tileMap, x, y,
-					EnergyParticle.UP));
+			energyParticles.add(new EnergyParticle(tileMap, x, y, EnergyParticle.UP));
 		}
 
 		// update position
@@ -458,11 +460,9 @@ public class Player extends MapObject implements GameObject {
 			else
 				cr.x = (int) x - 35;
 			if (facingRight)
-				energyParticles.add(new EnergyParticle(tileMap, x + 30, y,
-						EnergyParticle.RIGHT));
+				energyParticles.add(new EnergyParticle(tileMap, x + 30, y, EnergyParticle.RIGHT));
 			else
-				energyParticles.add(new EnergyParticle(tileMap, x - 30, y,
-						EnergyParticle.LEFT));
+				energyParticles.add(new EnergyParticle(tileMap, x - 30, y, EnergyParticle.LEFT));
 		}
 
 		// check enemy interaction
@@ -471,16 +471,14 @@ public class Player extends MapObject implements GameObject {
 			Enemy e = enemies.get(i);
 
 			// check attack
-			if (currentAction == ATTACKING && animation.getFrame() == 3
-					&& animation.getCount() == 0) {
+			if (currentAction == ATTACKING && animation.getFrame() == 3 && animation.getCount() == 0) {
 				if (e.intersects(ar)) {
 					e.hit(damage);
 				}
 			}
 
 			// check upward attack
-			if (currentAction == UPATTACKING && animation.getFrame() == 3
-					&& animation.getCount() == 0) {
+			if (currentAction == UPATTACKING && animation.getFrame() == 3 && animation.getCount() == 0) {
 				if (e.intersects(aur)) {
 					e.hit(damage);
 				}
@@ -531,8 +529,8 @@ public class Player extends MapObject implements GameObject {
 			} else {
 				if (animation.getFrame() == 4 && animation.getCount() == 0) {
 					for (int c = 0; c < 3; c++) {
-						energyParticles.add(new EnergyParticle(tileMap, aur.x
-								+ aur.width / 2, aur.y + 5, EnergyParticle.UP));
+						energyParticles
+								.add(new EnergyParticle(tileMap, aur.x + aur.width / 2, aur.y + 5, EnergyParticle.UP));
 					}
 				}
 			}
@@ -549,13 +547,11 @@ public class Player extends MapObject implements GameObject {
 				if (animation.getFrame() == 4 && animation.getCount() == 0) {
 					for (int c = 0; c < 3; c++) {
 						if (facingRight)
-							energyParticles.add(new EnergyParticle(tileMap,
-									ar.x + ar.width - 4, ar.y + ar.height / 2,
+							energyParticles.add(new EnergyParticle(tileMap, ar.x + ar.width - 4, ar.y + ar.height / 2,
 									EnergyParticle.RIGHT));
 						else
-							energyParticles.add(new EnergyParticle(tileMap,
-									ar.x + 4, ar.y + ar.height / 2,
-									EnergyParticle.LEFT));
+							energyParticles.add(
+									new EnergyParticle(tileMap, ar.x + 4, ar.y + ar.height / 2, EnergyParticle.LEFT));
 					}
 				}
 			}
@@ -604,11 +600,9 @@ public class Player extends MapObject implements GameObject {
 
 		// draw emote
 		if (emote == CONFUSED) {
-			g.drawImage(confused, (int) (x + xmap - cwidth / 2), (int) (y
-					+ ymap - 40), null);
+			g.drawImage(confused, (int) (x + xmap - cwidth / 2), (int) (y + ymap - 40), null);
 		} else if (emote == SURPRISED) {
-			g.drawImage(surprised, (int) (x + xmap - cwidth / 2), (int) (y
-					+ ymap - 40), null);
+			g.drawImage(surprised, (int) (x + xmap - cwidth / 2), (int) (y + ymap - 40), null);
 		}
 
 		// draw energy particles

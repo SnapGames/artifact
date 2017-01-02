@@ -7,10 +7,10 @@ import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 
-import com.webcontext.game.framework.GamePanel;
-import com.webcontext.game.framework.handler.InputHandler;
-import com.webcontext.game.framework.state.impl.GameStateManager;
-import com.webcontext.game.framework.state.impl.GenericGameState;
+import com.snapgames.framework.GamePanel;
+import com.snapgames.framework.handler.InputHandler;
+import com.snapgames.framework.state.impl.GameStateManager;
+import com.snapgames.framework.state.impl.GenericGameState;
 
 /**
  * Death and Teleport state.

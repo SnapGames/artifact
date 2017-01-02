@@ -5,8 +5,8 @@ import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 
-import com.webcontext.game.framework.entity.MapObject;
-import com.webcontext.game.framework.gfx.tilemap.TileMap;
+import com.snapgames.framework.entity.MapObject;
+import com.snapgames.framework.gfx.tilemap.TileMap;
 
 public class TopRightPiece extends MapObject {
 

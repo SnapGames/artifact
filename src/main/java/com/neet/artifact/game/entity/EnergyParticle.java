@@ -3,9 +3,9 @@ package com.neet.artifact.game.entity;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
-import com.webcontext.game.framework.entity.MapObject;
-import com.webcontext.game.framework.gfx.tilemap.TileMap;
-import com.webcontext.game.framework.resources.ContentManager;
+import com.snapgames.framework.entity.MapObject;
+import com.snapgames.framework.gfx.tilemap.TileMap;
+import com.snapgames.framework.resources.ContentManager;
 
 public class EnergyParticle extends MapObject {
 	

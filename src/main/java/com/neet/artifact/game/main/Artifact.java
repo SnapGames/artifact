@@ -3,9 +3,9 @@
  */
 package com.neet.artifact.game.main;
 
-import com.webcontext.game.framework.Game;
-import com.webcontext.game.framework.GamePanel;
-import com.webcontext.game.framework.resources.ContentManager;
+import com.snapgames.framework.Game;
+import com.snapgames.framework.GamePanel;
+import com.snapgames.framework.resources.ContentManager;
 
 /**
  * The main class to run the Artifact Game.

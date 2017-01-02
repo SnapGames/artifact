@@ -3,14 +3,15 @@
  */
 package com.neet.artifact.game.gamestate;
 
-import com.webcontext.game.framework.Game;
-import com.webcontext.game.framework.GamePanel;
-import com.webcontext.game.framework.audio.JukeBox;
-import com.webcontext.game.framework.handler.InputHandler;
-import com.webcontext.game.framework.state.impl.GameStateManager;
-import com.webcontext.game.framework.state.impl.GenericGameState;
-
 import javax.imageio.ImageIO;
+
+import com.snapgames.framework.Game;
+import com.snapgames.framework.GamePanel;
+import com.snapgames.framework.audio.JukeBox;
+import com.snapgames.framework.handler.InputHandler;
+import com.snapgames.framework.state.impl.GameStateManager;
+import com.snapgames.framework.state.impl.GenericGameState;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Locale;

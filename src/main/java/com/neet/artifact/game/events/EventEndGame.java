@@ -8,9 +8,9 @@ import java.util.ArrayList;
 
 import com.neet.artifact.game.entity.Player;
 import com.neet.artifact.game.entity.PlayerSave;
-import com.webcontext.game.framework.GamePanel;
-import com.webcontext.game.framework.event.Event;
-import com.webcontext.game.framework.state.GameState;
+import com.snapgames.framework.GamePanel;
+import com.snapgames.framework.event.Event;
+import com.snapgames.framework.state.GameState;
 
 /**
  * Event raised at end of game.

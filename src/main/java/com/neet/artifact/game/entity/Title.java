@@ -5,8 +5,8 @@ import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 
-import com.webcontext.game.framework.GamePanel;
-import com.webcontext.game.framework.entity.GameObject;
+import com.snapgames.framework.GamePanel;
+import com.snapgames.framework.entity.GameObject;
 
 /**
  * Title object to be displayed on some GameState

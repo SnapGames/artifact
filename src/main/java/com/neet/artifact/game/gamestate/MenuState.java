@@ -8,12 +8,12 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
 import com.neet.artifact.game.entity.PlayerSave;
-import com.webcontext.game.framework.Game;
-import com.webcontext.game.framework.GamePanel;
-import com.webcontext.game.framework.audio.JukeBox;
-import com.webcontext.game.framework.handler.InputHandler;
-import com.webcontext.game.framework.state.impl.GameStateManager;
-import com.webcontext.game.framework.state.impl.GenericGameState;
+import com.snapgames.framework.Game;
+import com.snapgames.framework.GamePanel;
+import com.snapgames.framework.audio.JukeBox;
+import com.snapgames.framework.handler.InputHandler;
+import com.snapgames.framework.state.impl.GameStateManager;
+import com.snapgames.framework.state.impl.GenericGameState;
 
 /**
  * The Menu for the game.

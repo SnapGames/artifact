@@ -5,11 +5,11 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 
-import com.webcontext.game.framework.Game;
-import com.webcontext.game.framework.GamePanel;
-import com.webcontext.game.framework.handler.InputHandler;
-import com.webcontext.game.framework.state.impl.GameStateManager;
-import com.webcontext.game.framework.state.impl.GenericGameState;
+import com.snapgames.framework.Game;
+import com.snapgames.framework.GamePanel;
+import com.snapgames.framework.handler.InputHandler;
+import com.snapgames.framework.state.impl.GameStateManager;
+import com.snapgames.framework.state.impl.GenericGameState;
 
 /**
  * The Pause state for this game.
